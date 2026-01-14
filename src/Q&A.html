@@ -1,0 +1,9 @@
+<div x-data="{ open: false }">
+  <button @click="open = !open" class="font-semibold">
+    Can I bring a plus one?
+  </button>
+
+  <p x-show="open" class="mt-2 text-neutral-600">
+    Please refer to your invitation.
+  </p>
+</div>
