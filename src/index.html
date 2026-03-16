@@ -1,93 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vincent & Nathalie</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-neutral-50 text-neutral-800 m-">
-
-  <!-- HEADER -->
-    <header class="">
-
-      <div class="bg-green-200">
-        <nav class="max-w-6xl mx-auto px-6 py-3 flex justify-between">
-          <ul class="flex gap-6 pl-5">
-            <li>
-              <a href="" class="text-xs flex items-center gap-2 ">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                  <path fill-rule="evenodd" d="m7.539 14.841.003.003.002.002a.755.755 0 0 0 .912 0l.002-.002.003-.003.012-.009a5.57 5.57 0 0 0 .19-.153 15.588 15.588 0 0 0 2.046-2.082c1.101-1.362 2.291-3.342 2.291-5.597A5 5 0 0 0 3 7c0 2.255 1.19 4.235 2.292 5.597a15.591 15.591 0 0 0 2.046 2.082 8.916 8.916 0 0 0 .189.153l.012.01ZM8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" clip-rule="evenodd" />
-                </svg>
-                <span>chato pas bo</span>
-              </a>
-            </li>
-            <li>
-              <a href="" class="text-xs flex items-center gap-2 ">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                  <path fill-rule="evenodd" d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3.25a.75.75 0 0 0 0-1.5h-2.5v-3.5Z" clip-rule="evenodd" />
-                </svg>
-                <span>Time left</span>
-              </a>
-            </li>
-          </ul>
-          <ul class="flex gap-6 pl-0 pr-5">
-            <li>
-              <a href="" class="text-xs flex items-center gap-2 ">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                  <path fill-rule="evenodd" d="m3.855 7.286 1.067-.534a1 1 0 0 0 .542-1.046l-.44-2.858A1 1 0 0 0 4.036 2H3a1 1 0 0 0-1 1v2c0 .709.082 1.4.238 2.062a9.012 9.012 0 0 0 6.7 6.7A9.024 9.024 0 0 0 11 14h2a1 1 0 0 0 1-1v-1.036a1 1 0 0 0-.848-.988l-2.858-.44a1 1 0 0 0-1.046.542l-.534 1.067a7.52 7.52 0 0 1-4.86-4.859Z" clip-rule="evenodd" />
-                </svg>
-                <span>mon phone tel tkt bb</span>
-              </a>
-            </li>
-            <li>
-              <a href="" class="pr-0 text-xs flex items-center gap-2  ">
-                <span>Contactez-nous ou pas stp</span>
-              </a>
-            </li>
-          </ul>
-      </div>
-
-      <main class="max-w-4xl mx-auto px-6 py-16 text-center">
-        <h1 class="text-green-900 text-6xl font-bold font-serif transition-transform duration-400 hover:scale-105">
-          Mariage Vincent & Natacha
-        </h1>
-        <h2 class="text-2xl font-bold font-serif transition-transform duration-400 hover:scale-105">
-          6 Juin 2000
-        </h2>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Vincent & Nathalie</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script defer src="https://unpkg.com/alpinejs..."></script>
+   </head>
+   <body class="bg-neutral-50 text-neutral-800 min-h-screen flex flex-col">
+      <!-- HEADER -->
+      <header>
+         <!-- TOP BAR -->
+         <div class="bg-green-200">
+            <nav class="max-w-6xl mx-auto px-6 py-3 flex justify-between">
+               <ul class="flex gap-6">
+                  <li>
+                     <a href="#" class="text-xs flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                           <path fill-rule="evenodd" d="m7.539 14.841.003.003.002.002a.755.755 0 0 0 .912 0l.002-.002.003-.003.012-.009a5.57 5.57 0 0 0 .19-.153 15.588 15.588 0 0 0 2.046-2.082c1.101-1.362 2.291-3.342 2.291-5.597A5 5 0 0 0 3 7c0 2.255 1.19 4.235 2.292 5.597a15.591 15.591 0 0 0 2.046 2.082 8.916 8.916 0 0 0 .189.153l.012.01ZM8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" clip-rule="evenodd" />
+                        </svg>
+                        <span>Château pas beau</span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="text-xs flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                           <path fill-rule="evenodd" d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3.25a.75.75 0 0 0 0-1.5h-2.5v-3.5Z" clip-rule="evenodd" />
+                        </svg>
+                        <span>Time left</span>
+                     </a>
+                  </li>
+               </ul>
+               <ul class="flex gap-6">
+                  <li>
+                     <a href="#" class="text-xs flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
+                           <path fill-rule="evenodd" d="m3.855 7.286 1.067-.534a1 1 0 0 0 .542-1.046l-.44-2.858A1 1 0 0 0 4.036 2H3a1 1 0 0 0-1 1v2c0 .709.082 1.4.238 2.062a9.012 9.012 0 0 0 6.7 6.7A9.024 9.024 0 0 0 11 14h2a1 1 0 0 0 1-1v-1.036a1 1 0 0 0-.848-.988l-2.858-.44a1 1 0 0 0-1.046.542l-.534 1.067a7.52 7.52 0 0 1-4.86-4.859Z" clip-rule="evenodd" />
+                        </svg>
+                        <span>Mon téléphone</span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="text-xs flex items-center gap-2">
+                     <span>Contactez-nous</span>
+                     </a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+         <!-- TITLE -->
+         <div class="max-w-4xl mx-auto px-6 py-16 text-center">
+            <h1 class="text-green-900 text-6xl font-bold font-serif hover:scale-105 transition">
+               Mariage Vincent & Natacha
+            </h1>
+            <h2 class="text-2xl font-serif mt-4 hover:scale-105 transition">
+               6 Juin 2000
+            </h2>
+         </div>
+         <!-- MAIN NAV -->
+         <nav class="w-full py-3 flex justify-center border-y border-neutral-300">
+            <ul class="flex">
+               <li class="border-l border-neutral-300 first:border-l-0">
+                  <a href="#" class="block px-6 py-2 hover:text-green-900 transition">Accueil</a>
+               </li>
+               <li class="border-l border-neutral-300">
+                  <a href="#" class="block px-6 py-2 hover:text-green-900 transition">Le Domaine</a>
+               </li>
+               <li class="border-l border-neutral-300">
+                  <a href="#" class="block px-6 py-2 hover:text-green-900 transition">Programme</a>
+               </li>
+               <li class="border-l border-neutral-300">
+                  <a href="#" class="block px-6 py-2 hover:text-green-900 transition">Liste de Mariage</a>
+               </li>
+               <li class="border-l border-neutral-300">
+                  <a href="#" class="block px-6 py-2 hover:text-green-900 transition">Contact</a>
+               </li>
+            </ul>
+         </nav>
+         <!-- HERO IMAGE -->
+         <div class="w-full aspect-[16/9] h-40 md:h-96 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80"
+               class="w-full h-full object-cover">
+         </div>
+      </header>
+      <!-- PAGE CONTENT -->
+      <main class="flex-grow">
+         <div class="max-w-4xl mx-auto px-6 py-16 space-y-8">
+            <h2 class="text-3xl font-serif text-green-900">Bienvenue</h2>
+            <p>
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+               interdum mauris sit amet mi convallis, at convallis massa bibendum.
+               Integer tincidunt sapien sed metus consequat, in convallis nulla
+               tristique.
+            </p>
+            <p>
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula
+               magna in tortor tincidunt, sit amet luctus sem rhoncus. Cras non
+               sapien vel risus bibendum facilisis.
+            </p>
+            <p>
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+               porttitor orci vel lectus lacinia, quis ultricies justo tincidunt.
+               Phasellus sit amet erat ut libero faucibus tristique.
+            </p>
+            <p>
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit
+               amet velit vitae massa malesuada tincidunt. Aliquam erat volutpat.
+               Sed accumsan lorem sed sem feugiat faucibus.
+            </p>
+         </div>
       </main>
-
-      <nav class="w-full py-3 flex justify-center border-b border-neutral-300 border-t">
-        <ul class="flex flex-row gap-0">
-          <li class="first:border-l-0 border-l border-neutral-300">
-            <a href="#" class="block px-6 py-2 hover:text-green-900 transition rounded">Accueil</a>
-          </li>
-          <li class="border-l border-neutral-300">
-            <a href="#" class="block px-6 py-2 hover:text-green-900 transition rounded">Le Domaine</a>
-          </li>
-          <li class="border-l border-neutral-300">
-            <a href="#" class="block px-6 py-2 hover:text-green-900 transition rounded">Programme & coco</a>
-          </li>
-          <li class="border-l border-neutral-300">
-            <a href="#" class="block px-6 py-2 hover:text-green-900 transition rounded">Liste de Mariage</a>
-          </li>
-          <li class="border-l border-neutral-300">
-            <a href="#" class="block px-6 py-2 hover:text-green-900 transition rounded">Contact (Snap)</a>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="w-full aspect-[16/9] h-40 md:h-96 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80" alt="Sample" class="w-full h-full object-cover object-center transition-transform duration-300 ease-in-out" />
-      </div>
-
-    </header>
-
-  <!-- FOOTER -->
-  <footer class="mt-16 py-6 text-white text-center bg-green-900">
-    &copy; 2024 Vincent & Natacha. All rights reserved.
-  </footer>
-
-</body>
+      <!-- FOOTER -->
+      <footer class="bg-green-900 text-green-100">
+         <div class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10 text-sm">
+            <div>
+               <p class="mb-6">©2024 Vincent & Natacha</p>
+               <button class="border border-orange-300 text-orange-200 px-6 py-2 hover:bg-orange-300 hover:text-green-900 transition">
+               Contactez-nous
+               </button>
+            </div>
+            <div class="space-y-2">
+               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Le Domaine</p>
+               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Informations pratiques</p>
+               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Témoignages</p>
+               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Contact</p>
+            </div>
+            <div class="space-y-2">
+               <p>Mariage Vincent & Natacha</p>
+               <p>2 La chasse aux Fresnes</p>
+               <p>50480 Ravenoville</p>
+               <p class="underline cursor-pointer">Afficher le téléphone</p>
+            </div>
+            <div class="space-y-2">
+               <p class="font-semibold">Le samedi</p>
+               <p>17h - 23h45</p>
+               <p class="mt-4 font-semibold">Le dimanche</p>
+               <p>00h - 19h30</p>
+            </div>
+         </div>
+      </footer>
+   </body>
 </html>
