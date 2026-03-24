@@ -1,314 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Vincent & Nathanael</title>
-
-   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-   <script src="https://cdn.tailwindcss.com"></script>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Natacha & Vincent</title>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+         tailwind.config = {
+           theme: {
+             extend: {
+               fontFamily: {
+             playfair: ['"Playfair Display"', 'serif'],
+           },
+               colors: {
+                 myellow: '#f7ebac',
+                 myellowdark: "#eec14b",
+                 mgreen: "#446c3d",
+                 mred: "#d56844",
+                   }
+             }
+           }
+         }
+      </script>
+      <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+   </head>
+   <body class="bg-white font-playfair text-neutral-800 min-h-screen flex flex-col scroll-smooth">
+      <!-- HEADER -->
+      <header>
+         <!-- TOP BAR -->
+         <div class="bg-gray-100 text-xs">
+            <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row md:justify-between gap-2">
+               <ul class="flex flex-wrap items-center gap-4">
+                  <li>
+                     <a href="#" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                           <path fill-rule="evenodd" d="m7.539 14.841.003.003.002.002a.755.755 0 0 0 .912 0l.002-.002.003-.003.012-.009a5.57 5.57 0 0 0 .19-.153 15.588 15.588 0 0 0 2.046-2.082c1.101-1.362 2.291-3.342 2.291-5.597A5 5 0 0 0 3 7c0 2.255 1.19 4.235 2.292 5.597a15.591 15.591 0 0 0 2.046 2.082 8.916 8.916 0 0 0 .189.153l.012.01ZM8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" clip-rule="evenodd"/>
+                        </svg>
+                        Chateau de Valmousse
+                     </a>
+                  </li>
+                  <li x-data="countdown()" x-init="start()">
+                     <a href="#" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                           <path fill-rule="evenodd" d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3.25a.75.75 0 0 0 0-1.5h-2.5v-3.5Z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>
+                        <span x-text="days"></span> jours,
+                        <span x-text="hours"></span> heures,
+                        <span x-text="minutes"></span> minutes
+                        </span>
+                     </a>
+                  </li>
+               </ul>
+               <ul class="flex flex-wrap items-center gap-4">
+                  <li>
+                     <a href="#" class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                           <path fill-rule="evenodd" d="m3.855 7.286 1.067-.534a1 1 0 0 0 .542-1.046l-.44-2.858A1 1 0 0 0 4.036 2H3a1 1 0 0 0-1 1v2c0 .709.082 1.4.238 2.062a9.012 9.012 0 0 0 6.7 6.7A9.024 9.024 0 0 0 11 14h2a1 1 0 0 0 1-1v-1.036a1 1 0 0 0-.848-.988l-2.858-.44a1 1 0 0 0-1.046.542l-.534 1.067a7.52 7.52 0 0 1-4.86-4.859Z" clip-rule="evenodd"/>
+                        </svg>
+                        Mon téléphone
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">Contactez-nous (ou pas)</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <!-- TITLE -->
+         <div class="max-w-4xl mx-auto px-6 py-12 md:py-20 text-center space-y-6">
+            <!-- Main Title -->
+            <h1 class="text-mgreen text-3xl sm:text-4xl md:text-6xl font-bold tracking-wide transition hover:scale-105">
+               Mariage Vincent & Natacha
+            </h1>
+            <!-- Date -->
+            <h2 class="text-mred text-lg sm:text-xl md:text-2xl italic">
+               28 Août 2026
+            </h2>
+            <!-- Countdown -->
+            <div 
+               x-data="countdown()" 
+               x-init="start()"
+               class="flex justify-center gap-3 sm:gap-6 mt-4 flex-wrap"
+               >
+               <!-- Item -->
+               <div class="bg-mred px-4 py-3 rounded-lg shadow text-center min-w-[70px]">
+                  <div class="text-xl text-white md:text-2xl font-bold" x-text="days"></div>
+                  <div class="text-xs text-white md:text-sm">jours</div>
+               </div>
+               <div class="bg-mred px-4 py-3 rounded-lg shadow text-center min-w-[70px]">
+                  <div class="text-xl text-white md:text-2xl font-bold" x-text="hours"></div>
+                  <div class="text-xs text-white md:text-sm">heures</div>
+               </div>
+               <div class="bg-mred px-4 py-3 rounded-lg shadow text-center min-w-[70px]">
+                  <div class="text-xl text-white md:text-2xl font-bold" x-text="minutes"></div>
+                  <div class="text-xs text-white md:text-sm">minutes</div>
+               </div>
+               <div class="bg-mred px-4 py-3 rounded-lg shadow text-center min-w-[70px]">
+                  <div class="text-xl text-white md:text-2xl font-bold" x-text="seconds"></div>
+                  <div class="text-xs text-white md:text-sm">secondes</div>
+               </div>
+            </div>
+         </div>
+         <!-- MAIN NAV -->
+         <nav x-data="{open:false}" class="border-y border-neutral-300">
+            <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center md:hidden">
+               <span class="font-semibold">Menu</span>
+               <button @click="open=!open">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"/>
+                  </svg>
+               </button>
+            </div>
+            <ul :class="open ? 'block' : 'hidden'"
+               class="md:flex md:justify-center md:space-x-0 text-center">
+               <li class="border-l border-neutral-300 first:border-l-0">
+                  <a href="#acceuil" class="block px-6 py-3 hover:text-mgreen transition">Accueil</a>
+               </li>
+               <li class="border-l border-neutral-300 first:border-l-0">
+                  <a href="#nous2" class="block px-6 py-3 hover:text-mgreen transition">Nous 2</a>
+               </li>
+               <li class="border-l border-neutral-300">
+                  <a href="#domaine" class="block px-6 py-3 hover:text-mgreen transition">Le Domaine</a>
+               </li>
+               <li class="border-l border-neutral-300">
+                  <a href="#programme" class="block px-6 py-3 hover:text-mgreen transition">Programme</a>
+               </li>
+               <li class="border-l border-neutral-300">
+                  <a href="#listemariage" class="block px-6 py-3 hover:text-mgreen transition">Liste de Mariage</a>
+               </li>
+               <li class="border-l border-neutral-300">
+                  <a href="#contact" class="block px-6 py-3 hover:text-mgreen transition">Contact</a>
+               </li>
+            </ul>
+         </nav>
+         <!-- HERO IMAGE -->
+         <div id="acceuil" class="w-full h-48 md:h-96 overflow-hidden">
+            <img
+               src="dist/Chateau.jpg" class="w-full h-full object-cover"
+               >
+         </div>
+      </header>
+      <!-- PAGE CONTENT -->
+      <main class="flex-grow">
+         <div class=" mx-auto px-6 py-12 md:py-16 space-y-6 bg-gradient-to-r from-mgreen to-[#4d7b43] text-white">
+            <h2 class="text-3xl">
+               Bienvenue
+            </h2>
+            <p>
+               Hello There ! ENFIN ! Après deux ans de préparation, de discussions et de choix des petits fours, nous sommes ravis de vous convier à notre mariage en Provence cet été 2026.
+            </p>
+            <p>
+               Ce merveilleux site vous permettras de trouver programmes, lieux, contacts, recommandations, outils statistiques, guide de vie astrale, conseils fiscaux et histoire de l’art primitif brésilien, peut être.
+            </p>
+            <p class="font-bold">
+               Nous avons hâte de vous voir pour l'occasion ! 
+            </p>
+         </div>
+         <section class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+               <!-- Image -->
+               <div class="flex-shrink-0 w-full md:w-1/3">
+                  <img src="dist/VandN.jpeg" alt="castle"
+                     class="w-full h-auto rounded-lg object-cover shadow-lg">
+               </div>
+               <!-- Text Content -->
+               <div id="nous2" class="w-full md:w-2/3 space-y-4">
+                  <h2 class="text-3xl md:text-4xl font-playfair font-bold text-mgreen">
+                     Vincent & Natacha
+                  </h2>
+                  <p class="text-gray-700 leading-relaxed">
+                     Qui sommes nous ? Et bien c’est une très bonne question ! 
+                  </p>
+                  <a href="#" class="inline-block bg-[#f7bfa4] text-white font-semibold px-6 py-2 rounded shadow hover:bg-mred transition">
+                  Quizz
+                  </a>
+               </div>
+            </div>
+         </section>
+         <section class="max-w-6xl mx-auto px-6 py-16 bg-[#f8f8f8]">
+            <div class="grid md:grid-cols-3 gap-12 items-start">
+               <!-- LEFT CONTENT -->
+               <div class="md:col-span-2 grid sm:grid-cols-2 gap-10">
+                  <!-- Lieux -->
+                  <div id="domaine">
+                     <h3 class="flex items-center gap-2 text-mgreen font-playfair text-lg font-semibold mb-3">
+                        <span class="w-2 h-2 bg-mred rounded-full"></span>
+                        Lieux
+                     </h3>
+                     <p class="text-gray-700 text-sm leading-relaxed">
+                        <strong>Château de Valmousse</strong><br>
+                        Un magnifique château entouré de nature, de belles pierres et d’un cadre enchanteur que nous aimons particulièrement.
+                     </p>
+                     <p class="text-gray-600 text-sm leading-relaxed mt-3">
+                        Nous aimons énormément vos enfants, mais afin que vous profitiez pleinement des festivités, ces deux jours seront réservés aux adultes.
+                     </p>
+                  </div>
+                  <!-- Programme -->
+                  <div id="programme">
+                     <h3 class="flex items-center gap-2 text-mgreen font-playfair text-lg font-semibold mb-3">
+                        <span class="w-2 h-2 bg-mred rounded-full"></span>
+                        Programme
+                     </h3>
+                     <div class="text-sm text-gray-700 space-y-3">
+                        <p class="font-semibold">Vendredi 28 août 2026 — Mariage</p>
+                        <div class="space-y-1 text-gray-600">
+                           <p><strong>16h</strong> — Messe / Célébration<br>
+                              Église Notre-Dame de l’Assomption, Lambesc
+                           </p>
+                           <p><strong>18h</strong> — Cocktail<br>
+                              Château de Valmousse
+                           </p>
+                           <p><strong>21h</strong> — Dîner<br>
+                              Orangerie
+                           </p>
+                           <p><strong>23h</strong> — Soirée<br>
+                              Orangerie
+                           </p>
+                        </div>
+                        <p class="font-semibold pt-3">Samedi 29 août 2026</p>
+                        <p class="text-gray-600">Brunch</p>
+                     </div>
+                  </div>
+                  <!-- Comment venir -->
+                  <div>
+                     <h3 class="flex items-center gap-2 text-mgreen font-playfair text-lg font-semibold mb-3">
+                        <span class="w-2 h-2 bg-mred rounded-full"></span>
+                        Comment venir
+                     </h3>
+                     <ul class="text-gray-600 text-sm space-y-1">
+                        <li>En train</li>
+                        <li>En avion</li>
+                        <li>En voiture</li>
+                     </ul>
+                  </div>
+                  <!-- Infos pratiques -->
+                  <div>
+                     <h3 class="flex items-center gap-2 text-mgreen font-playfair text-lg font-semibold mb-3">
+                        <span class="w-2 h-2 bg-mred rounded-full"></span>
+                        Informations pratiques
+                     </h3>
+                     <ul class="text-gray-600 text-sm space-y-1">
+                        <li>Hébergements : liste disponible prochainement</li>
+                        <a href="#" class="inline-block bg-[#f7bfa4] text-white font-semibold px-6 py-2 rounded shadow hover:bg-mred transition">
+                        Liste de Mariage
+                        </a>
+                     </ul>
+                  </div>
+               </div>
+               <!-- RIGHT IMAGE -->
+               <div class="w-full">
+                  <img src="dist/Chateau2.jpg"
+                     alt="Château de Valmousse"
+                     class="w-full h-[320px] object-cover rounded-xl shadow-md">
+               </div>
+            </div>
+         </section>
+      </main>
+      <!-- FOOTER -->
+      <footer id="contact" class="bg-mgreen text-green-100">
+         <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10 text-sm">
+            <div>
+               <p class="mb-6">©2024 Vincent & Natacha</p>
+               <button class="border border-mred text-mred font-bold px-6 py-2 hover:bg-mred hover:text-mgreen transition">
+               Contactez-nous
+               </button>
+            </div>
+            <div class="space-y-2">
+               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Le Domaine</p>
+               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Informations pratiques</p>
+               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Témoignages</p>
+               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Contact</p>
+            </div>
+            <div class="space-y-2">
+               <p>Mariage Vincent & Natacha</p>
+               <p>2 La chasse aux Fresnes</p>
+               <p>50480 Ravenoville</p>
+               <p class="underline cursor-pointer">Afficher le téléphone</p>
+            </div>
+            <div class="space-y-2">
+               <p class="font-semibold">Le samedi</p>
+               <p>17h - 23h45</p>
+               <p class="mt-4 font-semibold">Le dimanche</p>
+               <p>00h - 19h30</p>
+            </div>
+         </div>
+      </footer>
+   </body>
    <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-        playfair: ['"Playfair Display"', 'serif'],
-      },
-          colors: {
-            myellow: '#f7ebac',
-            myellowdark: "#eec14b",
-            mgreen: "#446c3d",
-            mred: "#d56844",
-              }
+      function countdown() {
+        return {
+          targetDate: new Date("2026-08-29T00:00:00"), // 👉 change this date
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+      
+          start() {
+            setInterval(() => {
+              const now = new Date();
+              const diff = this.targetDate - now;
+      
+              if (diff <= 0) return;
+      
+              this.days = Math.floor(diff / (1000 * 60 * 60 * 24));
+              this.hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+              this.minutes = Math.floor((diff / (1000 * 60)) % 60);
+              this.seconds = Math.floor((diff / 1000) % 60);
+            }, 1000);
+          }
         }
       }
-    }
-  </script>
-   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</head>
-
-<body class="bg-white font-playfair text-neutral-800 min-h-screen flex flex-col">
-
-   <!-- HEADER -->
-   <header>
-
-      <!-- TOP BAR -->
-      <div class="bg-gray-100 text-xs">
-         <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row md:justify-between gap-2">
-
-            <ul class="flex flex-wrap items-center gap-4">
-               <li>
-                  <a href="#" class="flex items-center gap-2">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                        <path fill-rule="evenodd" d="m7.539 14.841.003.003.002.002a.755.755 0 0 0 .912 0l.002-.002.003-.003.012-.009a5.57 5.57 0 0 0 .19-.153 15.588 15.588 0 0 0 2.046-2.082c1.101-1.362 2.291-3.342 2.291-5.597A5 5 0 0 0 3 7c0 2.255 1.19 4.235 2.292 5.597a15.591 15.591 0 0 0 2.046 2.082 8.916 8.916 0 0 0 .189.153l.012.01ZM8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" clip-rule="evenodd"/>
-                     </svg>
-                     Château beau
-                  </a>
-               </li>
-
-               <li>
-                  <a href="#" class="flex items-center gap-2">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3.25a.75.75 0 0 0 0-1.5h-2.5v-3.5Z" clip-rule="evenodd"/>
-                     </svg>
-                     Time left
-                  </a>
-               </li>
-            </ul>
-
-            <ul class="flex flex-wrap items-center gap-4">
-               <li>
-                  <a href="#" class="flex items-center gap-2">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                        <path fill-rule="evenodd" d="m3.855 7.286 1.067-.534a1 1 0 0 0 .542-1.046l-.44-2.858A1 1 0 0 0 4.036 2H3a1 1 0 0 0-1 1v2c0 .709.082 1.4.238 2.062a9.012 9.012 0 0 0 6.7 6.7A9.024 9.024 0 0 0 11 14h2a1 1 0 0 0 1-1v-1.036a1 1 0 0 0-.848-.988l-2.858-.44a1 1 0 0 0-1.046.542l-.534 1.067a7.52 7.52 0 0 1-4.86-4.859Z" clip-rule="evenodd"/>
-                     </svg>
-                     Mon téléphone
-                  </a>
-               </li>
-
-               <li>
-                  <a href="#">Contactez-nous (ou pas)</a>
-               </li>
-            </ul>
-
-         </div>
-      </div>
-
-
-      <!-- TITLE -->
-      <div class="max-w-4xl mx-auto px-6 py-12 md:py-16 text-center">
-         <h1 class="text-mgreen text-4xl md:text-6xl font-bold transition hover:scale-105">
-            Mariage Vincent & Natacha
-         </h1>
-
-         <h2 class="text-xl text-mred md:text-2xl mt-4 transition hover:scale-105">
-            6 Juin 2000
-         </h2>
-      </div>
-
-
-      <!-- MAIN NAV -->
-      <nav x-data="{open:false}" class="border-y border-neutral-300">
-
-         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center md:hidden">
-
-            <span class="font-semibold">Menu</span>
-
-            <button @click="open=!open">
-               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"/>
-               </svg>
-            </button>
-
-         </div>
-
-         <ul :class="open ? 'block' : 'hidden'"
-             class="md:flex md:justify-center md:space-x-0 text-center">
-
-            <li class="border-l border-neutral-300 first:border-l-0">
-               <a href="#" class="block px-6 py-3 hover:text-mgreen transition">Accueil</a>
-            </li>
-
-            <li class="border-l border-neutral-300">
-               <a href="#" class="block px-6 py-3 hover:text-mgreen transition">Le Domaine</a>
-            </li>
-
-            <li class="border-l border-neutral-300">
-               <a href="#" class="block px-6 py-3 hover:text-mgreen transition">Programme</a>
-            </li>
-
-            <li class="border-l border-neutral-300">
-               <a href="#" class="block px-6 py-3 hover:text-mgreen transition">Liste de Mariage</a>
-            </li>
-
-            <li class="border-l border-neutral-300">
-               <a href="#" class="block px-6 py-3 hover:text-mgreen transition">Contact</a>
-            </li>
-
-         </ul>
-
-      </nav>
-
-
-      <!-- HERO IMAGE -->
-      <div class="w-full h-48 md:h-96 overflow-hidden">
-         <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80"
-            class="w-full h-full object-cover"
-         >
-      </div>
-
-   </header>
-
-
-   <!-- PAGE CONTENT -->
-   <main class="flex-grow">
-    <div class=" mx-auto px-6 py-12 md:py-16 space-y-6 bg-gradient-to-r from-mgreen to-[#4d7b43] text-white">
-      <h2 class="text-3xl">
-        Bienvenue
-      </h2>
-
-      <p>
-        Nous sommes ravis de vous accueillir, quand vous voulez, pour notre célébration de foot et pour partager notre famille et les voisins,dont on se souviendra toute notre vie.
-      </p>
-
-      <p>
-        Nous avons choisi. Pour célébrer notre foot car c'est un lieu authentique et original (comme le foot) qui nous a conquis pour son grand terrain, ses ruines romantiques et son vieux pigeonnier avec du foot. 
-      </p>
-
-      <p class="font-bold">
-        Nous avons hâte de vous voir pour l'occasion ! 
-      </p>
-    </div>
-    <section class="max-w-6xl mx-auto px-4 py-12 md:py-16">
-  <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
-
-    <!-- Image -->
-    <div class="flex-shrink-0 w-full md:w-1/3">
-      <img src="dist/home.png" alt="du foot"
-           class="w-full h-auto rounded-lg object-cover shadow-lg">
-    </div>
-
-    <!-- Text Content -->
-    <div class="w-full md:w-2/3 space-y-4">
-      <h2 class="text-3xl md:text-4xl font-playfair font-bold text-mgreen">
-        Arthur & Vincent
-      </h2>
-      <p class="italic text-gray-500">
-        Since 2026
-      </p>
-      <p class="text-gray-700 leading-relaxed">
-        En mai 2023, cela fera plus de <strong>8 ans</strong> (pffff) d’amitié. Après Paris et rien d'autre, nous sommes enfin prêts pour la prochaine aventure : notre foot !
-      </p>
-      <p class="text-gray-700 leading-relaxed">
-        C’est pour cela que nous sommes très heureux de vous y convier et de partager ce précieux moment ensemble, faites vivre les cadeaux en sommes.
-      </p>
-      <a href="#" class="inline-block bg-[#f7bfa4] text-white font-semibold px-6 py-2 rounded shadow hover:bg-mred transition">
-        Voir mon frère
-      </a>
-    </div>
-
-  </div>
-  </section>
-  <section class="max-w-6xl mx-auto px-4 py-12 bg-gray-100 md:py-16">
-  <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-
-    <!-- Left Column: Informations -->
-    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 ">
-
-      <!-- A propos -->
-      <div class="space-y-2">
-        <div class="flex items-center gap-2 text-mred">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 7v13h20V7L12 2z"/>
-          </svg>
-          <h3 class="font-playfair text-mgreen font-semibold">A propos</h3>
-        </div>
-        <ul class="text-gray-700 space-y-1 text-sm">
-          <li>Mariage Arthur & Vincent</li>
-          <li>2 La chasse aux Fresnes, 50480 Ravenoville</li>
-          <li><a href="#" class="text-mred underline">Afficher le snap</a></li>
-          <li><a href="#" class="text-mred underline">Afficher le intagram</a></li>
-        </ul>
-      </div>
-
-      <!-- A savoir -->
-      <div class="space-y-2">
-        <div class="flex items-center gap-2 text-mred">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-          </svg>
-          <h3 class="font-playfair text-mgreen font-semibold">A pas savoir</h3>
-        </div>
-        <p class="text-gray-700 text-sm leading-relaxed">
-          Le weekend de l'ascension 2023 aura lieu <strong>les samedi 20 mai et dimanche 21 mai (mytho)</strong>. À noter que le vendredi 19 mai sera un jour sans école (letzgoo pas de dst d'espagnol), donc le pont du jeudi de l'Ascension 2023 est à prévoir (il pleut).
-        </p>
-      </div>
-
-      <!-- Horaires -->
-      <div class="space-y-2">
-        <div class="flex items-center gap-2 text-mred">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 11H11V7h2z"/>
-          </svg>
-          <h3 class="font-playfair text-mgreen font-semibold">Horaires</h3>
-        </div>
-        <ul class="text-gray-700 text-sm space-y-1">
-          <li>Le <strong>samedi</strong> 17h-23h45</li>
-          <li>Le <strong>samedi (pause)</strong> 23h45-00h00</li>
-          <li>Le <strong>dimanche</strong> 00h-00h10</li>
-        </ul>
-      </div>
-
-      <!-- Contact -->
-      <div class="space-y-2">
-        <div class="flex items-center gap-2 text-mred">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M2 17.25V21h3.75L17.81 8.94l-3.75-3.75L2 17.25z"/>
-          </svg>
-          <h3 class="font-playfair text-mgreen font-semibold">Pas Contact</h3>
-        </div>
-        <p class="text-gray-700 text-sm leading-relaxed">
-          Si vous avez des questions, n'hésitez surtout pas à ne pas nous envoyer un mail en cliquant sur un des boutons cachés ci-dessous.
-        </p>
-        <a href="#"
-           class="inline-block mt-2 bg-[#f7bfa4] text-white font-semibold px-6 py-2 rounded shadow hover:bg-mred transition">
-          Contacter Vincent ou le Pape
-        </a>
-      </div>
-
-    </div>
-
-    <!-- Right Column: Image -->
-    <div class="flex-shrink-0 w-full md:w-1/3">
-      <img src="dist/home_2.jpg" alt="Un dinosaure"
-           class="w-full h-auto rounded-lg object-cover shadow-lg">
-    </div>
-
-  </div>
-</section>
-  </main>
-
-
-   <!-- FOOTER -->
-   <footer class="bg-mgreen text-green-100">
-
-      <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10 text-sm">
-
-         <div>
-            <p class="mb-6">©2024 Vincent & Natacha</p>
-
-            <button class="border border-mred text-mred font-bold px-6 py-2 hover:bg-mred hover:text-mgreen transition">
-               Contactez-nous
-            </button>
-         </div>
-
-         <div class="space-y-2">
-            <p class="opacity-80 hover:opacity-100 cursor-pointer">› Le Domaine</p>
-            <p class="opacity-80 hover:opacity-100 cursor-pointer">› Informations pratiques</p>
-            <p class="opacity-80 hover:opacity-100 cursor-pointer">› Témoignages</p>
-            <p class="opacity-80 hover:opacity-100 cursor-pointer">› Contact</p>
-         </div>
-
-         <div class="space-y-2">
-            <p>Mariage Vincent & Natacha</p>
-            <p>2 La chasse aux Fresnes</p>
-            <p>50480 Ravenoville</p>
-            <p class="underline cursor-pointer">Afficher le téléphone</p>
-         </div>
-
-         <div class="space-y-2">
-            <p class="font-semibold">Le samedi</p>
-            <p>17h - 23h45</p>
-
-            <p class="mt-4 font-semibold">Le dimanche</p>
-            <p>00h - 19h30</p>
-         </div>
-
-      </div>
-
-   </footer>
-
-</body>
+   </script>
 </html>
