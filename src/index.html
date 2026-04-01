@@ -1,312 +1,434 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Natacha & Vincent</title>
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
       <script src="https://cdn.tailwindcss.com"></script>
       <script>
          tailwind.config = {
            theme: {
              extend: {
-               fontFamily: {
-             playfair: ['"Playfair Display"', 'serif'],
-           },
+               fontFamily: { playfair: ['"Playfair Display"', 'serif'] },
                colors: {
                  myellow: '#f7ebac',
                  myellowdark: "#eec14b",
                  mgreen: "#446c3d",
                  mred: "#d56844",
-                   }
+               }
              }
            }
          }
       </script>
       <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+      <script>
+         const EMAILJS_PUBLIC_KEY  = "Gy99PA8O61Fy7AZYj";
+         const EMAILJS_SERVICE_ID  = "service_hls52j3";
+         const EMAILJS_TEMPLATE_ID = "template_2swmced";
+         const RECIPIENT_1 = "vincen.scalbert@hotmail.fr";
+         const RECIPIENT_2 = "natacha.serryn@kedgebs.com";
+         (function(){ emailjs.init('Gy99PA8O61Fy7AZYj') })();
+         async function sendRsvpEmails(formData) {
+           const p = {
+             prenom: formData.prenom, nom: formData.nom, email: formData.email,
+             phone: formData.phoneCode + " " + formData.phone,
+             presence: formData.presence.join(", ") || "—",
+             plus_one: formData.plusOne || "—",
+             allergies: formData.allergies || "—",
+           };
+           await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, { ...p, to_email: RECIPIENT_1 });
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, { ...p, to_email: RECIPIENT_2 });
+         }
+      </script>
+      <style>
+         html { scroll-behavior: smooth; }
+         [id] { scroll-margin-top: 56px; }
+
+         @keyframes scroll {
+         0% {
+            transform: translateX(0);
+         }
+         100% {
+            transform: translateX(-50%);
+         }
+         }
+
+         .animate-scroll {
+         display: flex;
+         width: max-content;
+         animation: scroll 30s linear infinite;
+         }
+
+         .s-hero {
+           position: relative;
+           height: 260px;
+           overflow: hidden;
+         }
+         @media(min-width:768px){ .s-hero { height: 340px; } }
+         .s-hero img {
+           width:100%; height:100%; object-fit:cover;
+         }
+         .s-hero-overlay {
+           position:absolute; inset:0;
+           background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.50));
+           display:flex; align-items:center; justify-content:center;
+         }
+         .s-hero-overlay h2 {
+           color:#fff;
+           font-family:'Playfair Display',serif;
+           font-size:2.2rem;
+           font-weight:700;
+           letter-spacing:.05em;
+           text-shadow:0 2px 16px rgba(0,0,0,.45);
+         }
+         @media(min-width:768px){ .s-hero-overlay h2 { font-size:3rem; } }
+
+         .dot { display:inline-block; width:.5rem; height:.5rem; background:#d56844; border-radius:50%; margin-right:.5rem; }
+      </style>
    </head>
-   <body class="bg-white font-playfair text-neutral-800 min-h-screen flex flex-col scroll-smooth">
-      <!-- HEADER -->
+
+   <body class="bg-white font-playfair text-neutral-800 min-h-screen flex flex-col">
+
+      <!-- ══════════ HEADER ══════════ -->
       <header>
-         <!-- TOP BAR -->
+
+         <!-- top bar -->
          <div class="bg-gray-100 text-xs">
             <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row md:justify-between gap-2">
                <ul class="flex flex-wrap items-center gap-4">
                   <li>
-                     <a href="#" class="flex items-center gap-2">
+                     <a href="#domaine" class="flex items-center gap-1.5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
                            <path fill-rule="evenodd" d="m7.539 14.841.003.003.002.002a.755.755 0 0 0 .912 0l.002-.002.003-.003.012-.009a5.57 5.57 0 0 0 .19-.153 15.588 15.588 0 0 0 2.046-2.082c1.101-1.362 2.291-3.342 2.291-5.597A5 5 0 0 0 3 7c0 2.255 1.19 4.235 2.292 5.597a15.591 15.591 0 0 0 2.046 2.082 8.916 8.916 0 0 0 .189.153l.012.01ZM8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" clip-rule="evenodd"/>
                         </svg>
-                        Chateau de Valmousse
+                        Château de Valmousse
                      </a>
                   </li>
                   <li x-data="countdown()" x-init="start()">
-                     <a href="#" class="flex items-center gap-2">
+                     <span class="flex items-center gap-1.5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3.25a.75.75 0 0 0 0-1.5h-2.5v-3.5Z" clip-rule="evenodd"/>
                         </svg>
-                        <span>
-                        <span x-text="days"></span> jours,
-                        <span x-text="hours"></span> heures,
-                        <span x-text="minutes"></span> minutes
-                        </span>
-                     </a>
+                        <span x-text="days"></span> jours, <span x-text="hours"></span> h, <span x-text="minutes"></span> min
+                     </span>
                   </li>
                </ul>
                <ul class="flex flex-wrap items-center gap-4">
-                  <li>
-                     <a href="#" class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                           <path fill-rule="evenodd" d="m3.855 7.286 1.067-.534a1 1 0 0 0 .542-1.046l-.44-2.858A1 1 0 0 0 4.036 2H3a1 1 0 0 0-1 1v2c0 .709.082 1.4.238 2.062a9.012 9.012 0 0 0 6.7 6.7A9.024 9.024 0 0 0 11 14h2a1 1 0 0 0 1-1v-1.036a1 1 0 0 0-.848-.988l-2.858-.44a1 1 0 0 0-1.046.542l-.534 1.067a7.52 7.52 0 0 1-4.86-4.859Z" clip-rule="evenodd"/>
-                        </svg>
-                        Mon téléphone
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#">Contactez-nous (ou pas)</a>
-                  </li>
+                  <li><a href="#contact">Contactez-nous (ou pas)</a></li>
                </ul>
             </div>
          </div>
-         <!-- TITLE -->
+
+         <!-- title + countdown -->
          <div class="max-w-4xl mx-auto px-6 py-12 md:py-20 text-center space-y-6">
             <h1 class="text-mgreen text-3xl sm:text-4xl md:text-6xl font-bold tracking-wide transition hover:scale-105">
-               Mariage Vincent & Natacha
+               Mariage Natacha &amp; Vincent
             </h1>
-            <h2 class="text-mred text-lg sm:text-xl md:text-2xl italic">
-               28 Août 2026
-            </h2>
-            <div 
-               x-data="countdown()" 
-               x-init="start()"
-               class="flex justify-center gap-3 sm:gap-6 mt-4 flex-wrap"
-               >
+            <h2 class="text-mred text-lg sm:text-xl md:text-2xl italic">28 Août 2026</h2>
+            <div x-data="countdown()" x-init="start()" class="flex justify-center gap-3 sm:gap-6 flex-wrap">
                <div class="bg-mred px-4 py-3 rounded-lg shadow text-center min-w-[70px]">
                   <div class="text-xl text-white md:text-2xl font-bold" x-text="days"></div>
-                  <div class="text-xs text-white md:text-sm">jours</div>
+                  <div class="text-xs text-white">jours</div>
                </div>
                <div class="bg-mred px-4 py-3 rounded-lg shadow text-center min-w-[70px]">
                   <div class="text-xl text-white md:text-2xl font-bold" x-text="hours"></div>
-                  <div class="text-xs text-white md:text-sm">heures</div>
+                  <div class="text-xs text-white">heures</div>
                </div>
                <div class="bg-mred px-4 py-3 rounded-lg shadow text-center min-w-[70px]">
                   <div class="text-xl text-white md:text-2xl font-bold" x-text="minutes"></div>
-                  <div class="text-xs text-white md:text-sm">minutes</div>
+                  <div class="text-xs text-white">minutes</div>
                </div>
                <div class="bg-mred px-4 py-3 rounded-lg shadow text-center min-w-[70px]">
                   <div class="text-xl text-white md:text-2xl font-bold" x-text="seconds"></div>
-                  <div class="text-xs text-white md:text-sm">secondes</div>
+                  <div class="text-xs text-white">secondes</div>
                </div>
             </div>
          </div>
-         <!-- MAIN NAV -->
-         <nav x-data="{open:false}" class="border-y border-neutral-300">
+
+         <!-- sticky nav -->
+         <nav x-data="{open:false}" class="sticky top-0 z-50 border-y border-neutral-300 bg-white shadow-sm">
             <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center md:hidden">
-               <span class="font-semibold">Menu</span>
-               <button @click="open=!open">
+               <span class="font-semibold text-sm">Menu</span>
+               <button @click="open=!open" aria-label="menu">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"/>
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                   </svg>
                </button>
             </div>
-            <ul :class="open ? 'block' : 'hidden'"
-               class="md:flex md:justify-center md:space-x-0 text-center">
-               <li class="border-l border-neutral-300 first:border-l-0">
-                  <a href="#acceuil" class="block px-6 py-3 hover:text-mgreen transition">Accueil</a>
-               </li>
-               <li class="border-l border-neutral-300 first:border-l-0">
-                  <a href="#nous2" class="block px-6 py-3 hover:text-mgreen transition">Nous 2</a>
-               </li>
-               <li class="border-l border-neutral-300">
-                  <a href="#domaine" class="block px-6 py-3 hover:text-mgreen transition">Le Domaine</a>
-               </li>
-               <li class="border-l border-neutral-300">
-                  <a href="#programme" class="block px-6 py-3 hover:text-mgreen transition">Programme</a>
-               </li>
-               <li class="border-l border-neutral-300">
-                  <a href="#listemariage" class="block px-6 py-3 hover:text-mgreen transition">Liste de Mariage</a>
-               </li>
-               <li class="border-l border-neutral-300">
-                  <a href="#rsvp" class="block px-6 py-3 hover:text-mgreen transition">RSVP</a>
-               </li>
-               <li class="border-l border-neutral-300">
-                  <a href="#contact" class="block px-6 py-3 hover:text-mgreen transition">Contact</a>
-               </li>
+            <ul :class="open?'block':'hidden'" class="md:flex md:justify-center text-center text-sm">
+               <li class="border-l border-neutral-300 first:border-l-0"><a href="#accueil"      class="block px-4 py-3 hover:text-mgreen transition">Accueil</a></li>
+               <li class="border-l border-neutral-300"><a href="#nous2"         class="block px-4 py-3 hover:text-mgreen transition">Nous 2</a></li>
+               <li class="border-l border-neutral-300"><a href="#domaine"       class="block px-4 py-3 hover:text-mgreen transition">Le Domaine</a></li>
+               <li class="border-l border-neutral-300"><a href="#programme"     class="block px-4 py-3 hover:text-mgreen transition">Programme</a></li>
+               <li class="border-l border-neutral-300"><a href="#venir"         class="block px-4 py-3 hover:text-mgreen transition">Venir</a></li>
+               <li class="border-l border-neutral-300"><a href="#infos"         class="block px-4 py-3 hover:text-mgreen transition">Infos pratiques</a></li>
+               <li class="border-l border-neutral-300"><a href="#listemariage"  class="block px-4 py-3 hover:text-mgreen transition">Liste de Mariage</a></li>
+               <li class="border-l border-neutral-300"><a href="#rsvp"          class="block px-4 py-3 hover:text-mgreen transition">RSVP</a></li>
+               <li class="border-l border-neutral-300"><a href="#contact"       class="block px-4 py-3 hover:text-mgreen transition">Contact</a></li>
             </ul>
          </nav>
-         <!-- HERO IMAGE -->
-         <div id="acceuil" class="w-full h-48 md:h-96 overflow-hidden">
-            <img src="dist/Chateau.jpg" class="w-full h-full object-cover">
+
+         <!-- main hero -->
+         <div id="accueil" class="w-full h-52 md:h-[420px] overflow-hidden">
+            <img src="dist/chat1.jpeg" alt="Château de Valmousse" class="w-full h-full object-cover">
          </div>
+
       </header>
 
-      <!-- PAGE CONTENT -->
+      <!-- ══════════ MAIN ══════════ -->
       <main class="flex-grow">
-         <div class="mx-auto px-6 py-12 md:py-16 space-y-6 bg-gradient-to-r from-mgreen to-[#4d7b43] text-white">
-            <h2 class="text-3xl">Bienvenue</h2>
-            <p>
-               Hello There ! ENFIN ! Après deux ans de préparation, de discussions et de choix des petits fours, nous sommes ravis de vous convier à notre mariage en Provence cet été 2026.
-            </p>
-            <p>
-               Ce merveilleux site vous permettras de trouver programmes, lieux, contacts, recommandations, outils statistiques, guide de vie astrale, conseils fiscaux et histoire de l'art primitif brésilien, peut être.
-            </p>
+
+         <!-- bienvenue -->
+         <div class="px-6 py-12 md:py-16 space-y-5 bg-gradient-to-r from-mgreen to-[#4d7b43] text-white">
+            <h2 class="text-3xl font-bold">Bienvenue</h2>
+            <p>Hello There ! ENFIN ! Après deux ans de préparation, de discussions et de choix des petits fours, nous sommes ravis de vous convier à notre mariage en Provence cet été 2026.</p>
+            <p>Ce merveilleux site vous permettra de trouver programmes, lieux, contacts, recommandations, outils statistiques, guide de vie astrale, conseils fiscaux et histoire de l'art primitif brésilien, peut-être.</p>
             <p class="font-bold">Nous avons hâte de vous voir pour l'occasion !</p>
          </div>
 
-         <section class="max-w-6xl mx-auto px-4 py-12 md:py-16">
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
-               <div class="flex-shrink-0 w-full md:w-1/3">
-                  <img src="dist/VandN.jpeg" alt="castle" class="w-full h-auto rounded-lg object-cover shadow-lg">
-               </div>
-               <div id="nous2" class="w-full md:w-2/3 space-y-4">
-                  <h2 class="text-3xl md:text-4xl font-playfair font-bold text-mgreen">Vincent & Natacha</h2>
-                  <p class="text-gray-700 leading-relaxed">Qui sommes nous ? Et bien c'est une très bonne question !</p>
-                  <a href="#" class="inline-block bg-[#f7bfa4] text-white font-semibold px-6 py-2 rounded shadow hover:bg-mred transition">Quizz</a>
+         <!-- ─────────── NOUS 2 ─────────── -->
+         <div id="nous2" class="s-hero">
+            <img src="dist/coup1.jpeg" alt="Natacha & Vincent">
+            <div class="s-hero-overlay"><h2>Nous 2</h2></div>
+         </div>
+         <section class="max-w-4xl mx-auto px-6 py-14 space-y-4">
+            <h3 class="text-2xl md:text-3xl font-bold text-mgreen">Natacha &amp; Vincent</h3>
+            <p class="text-gray-700 leading-relaxed">Qui sommes-nous ? Et bien c'est une très bonne question !</p>
+            
+            <div class="overflow-hidden py-10">
+               <div class="flex animate-scroll">
+
+                  <!-- ALL images in one line (duplicated) -->
+                  <div class="flex gap-4 pr-4">
+                     <img src="dist/coup2.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <img src="dist/coup3.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <img src="dist/coup4.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <img src="dist/coup5.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <!-- duplicate immediately -->
+                     <img src="dist/coup2.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <img src="dist/coup3.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <img src="dist/coup4.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <img src="dist/coup5.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                  
+                  </div>
+
                </div>
             </div>
+            
+            <a href="https://view.genially.com/69c294ee6869cc66de1571db" target="_blank"
+               class="inline-block bg-[#f7bfa4] text-white font-semibold px-6 py-2 rounded shadow hover:bg-mred transition">
+               Quizz
+            </a>
          </section>
 
-         <section class="max-w-6xl mx-auto px-6 py-16 bg-[#f8f8f8]">
-            <div class="grid md:grid-cols-3 gap-12 items-start">
-               <div class="md:col-span-2 grid sm:grid-cols-2 gap-10">
-                  <div id="domaine">
-                     <h3 class="flex items-center gap-2 text-mgreen font-playfair text-lg font-semibold mb-3">
-                        <span class="w-2 h-2 bg-mred rounded-full"></span>
-                        Lieux
-                     </h3>
-                     <p class="text-gray-700 text-sm leading-relaxed">
-                        <strong>Château de Valmousse</strong><br>
-                        Un magnifique château entouré de nature, de belles pierres et d'un cadre enchanteur que nous aimons particulièrement.
-                     </p>
-                     <p class="text-gray-600 text-sm leading-relaxed mt-3">
-                        Nous aimons énormément vos enfants, mais afin que vous profitiez pleinement des festivités, ces deux jours seront réservés aux adultes.
-                     </p>
-                  </div>
-                  <div id="programme">
-                     <h3 class="flex items-center gap-2 text-mgreen font-playfair text-lg font-semibold mb-3">
-                        <span class="w-2 h-2 bg-mred rounded-full"></span>
-                        Programme
-                     </h3>
-                     <div class="text-sm text-gray-700 space-y-3">
-                        <p class="font-semibold">Vendredi 28 août 2026 — Mariage</p>
-                        <div class="space-y-1 text-gray-600">
-                           <p><strong>16h</strong> — Messe / Célébration<br>Église Notre-Dame de l'Assomption, Lambesc</p>
-                           <p><strong>18h</strong> — Cocktail<br>Château de Valmousse</p>
-                           <p><strong>21h</strong> — Dîner<br>Orangerie</p>
-                           <p><strong>23h</strong> — Soirée<br>Orangerie</p>
-                        </div>
-                        <p class="font-semibold pt-3">Samedi 29 août 2026</p>
-                        <p class="text-gray-600">Brunch</p>
+         <!-- ─────────── LE DOMAINE ─────────── -->
+         <div id="domaine" class="s-hero">
+            <img src="dist/Chateau2.jpg" alt="Château de Valmousse">
+            <div class="s-hero-overlay"><h2>Le Domaine</h2></div>
+         </div>
+         <section class="max-w-4xl mx-auto px-6 py-14 space-y-8 text-sm">
+
+            <div>
+               <h3 class="text-lg font-bold text-mgreen mb-3"><span class="dot"></span>Château de Valmousse</h3>
+               <p class="text-gray-700 leading-relaxed">Un magnifique château entouré de nature, de belles pierres et d'un cadre enchanteur que nous aimons particulièrement.</p>
+               <p class="text-gray-600 leading-relaxed mt-3">
+                  Le Château de Valmousse est situé sur la commune de Lambesc, dans le département des Bouches-du-Rhône, sur la D572 allant de Saint-Cannat à Pélissanne. Attention, l'entrée du Domaine se découvre à une centaine de mètres du pont croisant la route départementale, soyez prudent en arrivant à l'intersection.
+               </p>
+               <a href="https://maps.app.goo.gl/mEkKe51SAnL4vQuDA" target="_blank" class="text-gray-500 mt-2 font-medium">GPS : 43.6213048 – 5.2418307</a>
+            </div>
+
+            <hr class="border-neutral-200">
+
+            <div>
+               <h3 class="text-lg font-bold text-mgreen mb-3"><span class="dot"></span>Église Notre-Dame de l'Assomption</h3>
+               <p class="text-gray-700 leading-relaxed">L'église Notre-Dame de l'Assomption est située au cœur du village de Lambesc, dans le département des Bouches-du-Rhône. Elle se trouve sur la place principale, à proximité immédiate de l'hôtel de ville, au centre du village historique.</p>
+               <p class="text-gray-600 leading-relaxed mt-3">Nous vous conseillons de ne pas essayer de vous garer devant l'église : il y a peu de places et les rues sont exiguës. Plusieurs parkings sont accessibles à quelques minutes à pied (parking de la mairie, parking des Aires), puis l'église est facilement rejoignable à pied à travers les ruelles du centre.</p>
+               <a href="https://maps.app.goo.gl/BusaCGQiqpSMUEsu5" target="_blank" class="text-gray-500 mt-2 font-medium">GPS : 43.6533 – 5.2625</a>
+            </div>
+
+         </section>
+
+         <!-- ─────────── PROGRAMME ─────────── -->
+         <div id="programme" class="s-hero">
+            <img src="dist/chat1.jpeg" alt="Programme" style="object-position:center 55%">
+            <div class="s-hero-overlay"><h2>Programme</h2></div>
+         </div>
+         <section class="max-w-4xl mx-auto px-6 py-14">
+            <div class="grid md:grid-cols-2 gap-12">
+
+               <div>
+                  <h3 class="text-lg font-bold text-mgreen mb-6"><span class="dot"></span>Vendredi 28 août 2026 — It's time...</h3>
+                  <div class="space-y-5 text-sm">
+                     <div class="flex gap-5 items-start">
+                        <span class="font-bold text-mred w-14 shrink-0 pt-0.5">16h00</span>
+                        <div><p class="font-semibold text-gray-800">Célébration</p><p class="text-gray-500">Église Notre-Dame de l'Assomption, Lambesc</p></div>
+                     </div>
+                     <div class="flex gap-5 items-start">
+                        <span class="font-bold text-mred w-14 shrink-0 pt-0.5">18h00</span>
+                        <div><p class="font-semibold text-gray-800">Cocktail debout</p><p class="text-gray-500">Château de Valmousse</p></div>
+                     </div>
+                     <div class="flex gap-5 items-start">
+                        <span class="font-bold text-mred w-14 shrink-0 pt-0.5">21h00</span>
+                        <div><p class="font-semibold text-gray-800">Dîner assis</p><p class="text-gray-500">Orangerie</p></div>
+                     </div>
+                     <div class="flex gap-5 items-start">
+                        <span class="font-bold text-mred w-14 shrink-0 pt-0.5">23h00</span>
+                        <div><p class="font-semibold text-gray-800">Dancefloor assis debout couché</p><p class="text-gray-500">Orangerie</p></div>
                      </div>
                   </div>
-                  <div>
-                     <h3 class="flex items-center gap-2 text-mgreen font-playfair text-lg font-semibold mb-3">
-                        <span class="w-2 h-2 bg-mred rounded-full"></span>
-                        Comment venir
-                     </h3>
-                     <ul class="text-gray-600 text-sm space-y-1">
-                        <li>En train</li>
-                        <li>En avion</li>
-                        <li>En voiture</li>
-                     </ul>
-                  </div>
-                  <div>
-                     <h3 class="flex items-center gap-2 text-mgreen font-playfair text-lg font-semibold mb-3">
-                        <span class="w-2 h-2 bg-mred rounded-full"></span>
-                        Informations pratiques
-                     </h3>
-                     <ul class="text-gray-600 text-sm space-y-1">
-                        <li>Hébergements : liste disponible prochainement</li>
-                        <a href="#" class="inline-block bg-[#f7bfa4] text-white font-semibold px-6 py-2 rounded shadow hover:bg-mred transition">Liste de Mariage</a>
-                     </ul>
+               </div>
+
+               <div>
+                  <h3 class="text-lg font-bold text-mgreen mb-6"><span class="dot"></span>Samedi 29 août 2026</h3>
+                  <div class="flex gap-5 items-start text-sm">
+                     <span class="font-bold text-mred w-14 shrink-0 pt-0.5">12h30</span>
+                     <div><p class="font-semibold text-gray-800">Brunch &amp; recovery</p><p class="text-gray-500">Château de Valmousse</p></div>
                   </div>
                </div>
-               <div class="w-full">
-                  <img src="dist/Chateau2.jpg" alt="Château de Valmousse" class="w-full h-[320px] object-cover rounded-xl shadow-md">
-               </div>
+
             </div>
          </section>
 
-         <!-- RSVP SECTION -->
-         <section id="rsvp" class="max-w-2xl mx-auto px-6 py-16 md:py-20"
+         <!-- ─────────── VENIR ─────────── -->
+         <div id="venir" class="s-hero">
+            <img src="dist/Chateau2.jpg" alt="Comment venir" style="object-position:center 75%">
+            <div class="s-hero-overlay"><h2>Comment venir</h2></div>
+         </div>
+         <section class="max-w-4xl mx-auto px-6 py-14 space-y-8">
+
+            <div class="grid sm:grid-cols-3 gap-6 text-sm">
+               <div class="bg-gray-50 rounded-xl p-5 space-y-2">
+                  <p class="font-bold text-mgreen text-base">✈ En avion</p>
+                  <p class="text-gray-600">Aéroport de Marseille Provence — <strong>27 km</strong></p>
+               </div>
+               <div class="bg-gray-50 rounded-xl p-5 space-y-2">
+                  <p class="font-bold text-mgreen text-base">🚄 En train</p>
+                  <p class="text-gray-600">Gare d'Aix-en-Provence TGV — <strong>30 km</strong></p>
+               </div>
+               <div class="bg-gray-50 rounded-xl p-5 space-y-2">
+                  <p class="font-bold text-mgreen text-base">🚗 En voiture</p>
+                  <p class="text-gray-600">Aix-en-Provence — <strong>20 km</strong></p>
+                  <p class="text-gray-600">Salon-de-Provence — <strong>14 km</strong></p>
+                  <p class="text-gray-600">Marseille — <strong>52 km</strong></p>
+               </div>
+            </div>
+
+            <div class="text-sm text-gray-700 bg-[#f7ebac]/50 rounded-xl p-5 leading-relaxed space-y-1">
+               <p class="font-bold text-gray-800">📍 Repères GPS</p>
+               <p><a href="https://maps.app.goo.gl/mEkKe51SAnL4vQuDA" target="_blank" class="text-gray-500 mt-2 font-medium">Château de Valmousse : 43.6213048 – 5.2418307</a></p>
+               <p><a href="https://maps.app.goo.gl/BusaCGQiqpSMUEsu5" target="_blank" class="text-gray-500 mt-2 font-medium">Église Notre-Dame de l'Assomption : 43.6533 – 5.2625</a></p>
+            </div>
+
+         </section>
+
+         <!-- ─────────── INFOS PRATIQUES ─────────── -->
+         <div id="infos" class="s-hero">
+            <img src="dist/chat1.jpeg" alt="Infos pratiques" style="object-position:center 35%">
+            <div class="s-hero-overlay"><h2>Infos pratiques</h2></div>
+         </div>
+         <section class="max-w-4xl mx-auto px-6 py-14 space-y-10 text-sm text-gray-700">
+
+            <div>
+               <h3 class="text-lg font-bold text-mgreen mb-2"><span class="dot"></span>Enfants</h3>
+               <p>Nous aimons énormément vos enfants, mais afin que vous profitiez pleinement des festivités, ces deux jours seront réservés aux adultes.</p>
+            </div>
+
+            <hr class="border-neutral-200">
+
+            <div>
+               <h3 class="text-lg font-bold text-mgreen mb-2"><span class="dot"></span>Navettes de nuit</h3>
+               <p>Afin de faciliter vos retours en toute sérénité, un van sera mis à disposition entre 1h00 et 5h00 pour assurer des trajets entre le Château de Valmousse et les hébergements situés dans un rayon de 15 km autour de Lambesc.</p>
+               <p class="mt-2 font-semibold text-gray-800">Dernier départ du château à 4h45.</p>
+            </div>
+
+            <hr class="border-neutral-200">
+
+            <div>
+               <h3 class="text-lg font-bold text-mgreen mb-2"><span class="dot"></span>Hébergement</h3>
+               <p class="mb-3">Nous avons préparé une liste de gîtes et de chambres aux alentours pour faciliter votre organisation :</p>
+               <ul class="space-y-1 text-gray-600">
+                  <li>• Mas Les Vieux Chênes <span class="text-mred font-semibold">€</span></li>
+                  <li>• L'Oustau de Bigaté <span class="text-mred font-semibold">€</span></li>
+                  <li>• L'Oliverais en Provence <span class="text-mred font-semibold">€</span></li>
+                  <li>• Guest Rome « The Secret of the Stones » <span class="text-mred font-semibold">€€</span></li>
+                  <li>• Les Cistes <span class="text-mred font-semibold">€€</span></li>
+                  <li>• La Minocoule <span class="text-mred font-semibold">€€</span></li>
+                  <li>• Chambres d'hôtes La Pinede <span class="text-mred font-semibold">€€</span></li>
+                  <li>• Mas au Cœur de la Provence &amp; Spa (booking) <span class="text-mred font-semibold">€€€</span></li>
+                  <li>• Mas de Fauchon - Les Collectionneurs <span class="text-mred font-semibold">€€€€</span></li>
+               </ul>
+            </div>
+
+         </section>
+
+         <!-- ─────────── LISTE DE MARIAGE ─────────── -->
+         <div id="listemariage" class="s-hero">
+            <img src="dist/Chateau2.jpg" alt="Liste de mariage" style="object-position:center 25%">
+            <div class="s-hero-overlay"><h2>Liste de Mariage</h2></div>
+         </div>
+         <section class="max-w-4xl mx-auto px-6 py-14 text-center space-y-6">
+            <p class="text-gray-700 leading-relaxed max-w-xl mx-auto">Votre présence est le plus beau des cadeaux. Si vous souhaitez néanmoins nous gâter, vous trouverez notre liste ici :</p>
+            <a href="https://www.millemercismariage.com/mariage_nv_2026/liste.html" target="_blank"
+               class="inline-block bg-mred text-white font-semibold px-8 py-3 rounded shadow hover:bg-[#c0583a] transition text-sm tracking-wide">
+               Accéder à la liste de mariage
+            </a>
+         </section>
+
+         <!-- ─────────── RSVP ─────────── -->
+         <div id="rsvp" class="s-hero">
+            <img src="dist/chat1.jpeg" alt="RSVP" style="object-position:center 65%">
+            <div class="s-hero-overlay"><h2>RSVP</h2></div>
+         </div>
+         <section class="max-w-2xl mx-auto px-6 py-14 md:py-20"
             x-data="{
-               submitted: false,
-               prenom: '',
-               nom: '',
-               email: '',
-               phoneCode: 'FR +33',
-               phone: '',
-               plusOne: '',
-               allergies: '',
-               presence: [],
-               submit() {
-                  if (this.prenom && this.nom && this.email && this.presence.length) {
-                     this.submitted = true;
-                  }
+               submitted:false, sending:false, errorMsg:'',
+               prenom:'', nom:'', email:'', phoneCode:'FR +33', phone:'',
+               plusOne:'', allergies:'', presence:[],
+               get isValid(){ return this.prenom.trim()&&this.nom.trim()&&this.email.trim()&&this.presence.length>0; },
+               async submit(){
+                  if(!this.isValid) return;
+                  this.sending=true; this.errorMsg='';
+                  try{
+                     await sendRsvpEmails({prenom:this.prenom,nom:this.nom,email:this.email,phoneCode:this.phoneCode,phone:this.phone,plusOne:this.plusOne,allergies:this.allergies,presence:this.presence});
+                     this.submitted=true;
+                  }catch(e){ console.error(e); this.errorMsg='Une erreur est survenue. Veuillez réessayer.'; }
+                  finally{ this.sending=false; }
                }
             }">
 
-            <!-- Title -->
-            <h2 class="text-3xl md:text-4xl font-playfair font-bold italic text-neutral-800 mb-10">
-               Pour RSVP, c'est par ici !
-            </h2>
+            <h2 class="text-3xl md:text-4xl font-bold italic text-neutral-800 mb-10">Pour RSVP, c'est par ici !</h2>
 
-            <!-- Success message -->
             <div x-show="submitted" x-transition class="bg-mgreen text-white rounded-lg px-6 py-8 text-center space-y-2">
                <p class="text-2xl font-bold">Merci ! 🎉</p>
                <p>Votre réponse a bien été enregistrée. À très bientôt !</p>
             </div>
+            <div x-show="errorMsg" x-transition class="bg-red-100 border border-red-300 text-red-700 rounded-lg px-5 py-4 mb-6 text-sm" x-text="errorMsg"></div>
 
-            <!-- Form -->
             <div x-show="!submitted">
-               <!-- Prénom + Nom -->
                <div class="grid grid-cols-2 gap-4 mb-5">
                   <div>
                      <label class="block text-sm mb-1">Prénom <span class="text-mred">*</span></label>
-                     <input
-                        type="text"
-                        x-model="prenom"
-                        class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition"
-                        placeholder="">
+                     <input type="text" x-model="prenom" class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition">
                   </div>
                   <div>
                      <label class="block text-sm mb-1">Nom <span class="text-mred">*</span></label>
-                     <input
-                        type="text"
-                        x-model="nom"
-                        class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition"
-                        placeholder="">
+                     <input type="text" x-model="nom" class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition">
                   </div>
                </div>
-
-               <!-- Email -->
                <div class="mb-5">
                   <label class="block text-sm mb-1">E-mail <span class="text-mred">*</span></label>
-                  <input
-                     type="email"
-                     x-model="email"
-                     class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition"
-                     placeholder="">
+                  <input type="email" x-model="email" class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition">
                </div>
-
-               <!-- Phone -->
                <div class="grid grid-cols-2 gap-4 mb-5">
                   <div>
                      <label class="block text-sm mb-1">Code</label>
                      <div class="relative">
-                        <select
-                           x-model="phoneCode"
-                           class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition appearance-none bg-white pr-8">
-                           <option>FR +33</option>
-                           <option>BE +32</option>
-                           <option>CH +41</option>
-                           <option>US +1</option>
-                           <option>GB +44</option>
-                           <option>ES +34</option>
-                           <option>IT +39</option>
-                           <option>DE +49</option>
+                        <select x-model="phoneCode" class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition appearance-none bg-white pr-8">
+                           <option>FR +33</option><option>BE +32</option><option>CH +41</option>
+                           <option>US +1</option><option>GB +44</option><option>ES +34</option>
+                           <option>IT +39</option><option>DE +49</option>
                         </select>
                         <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
                            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
@@ -315,118 +437,95 @@
                   </div>
                   <div>
                      <label class="block text-sm mb-1">Téléphone</label>
-                     <input
-                        type="tel"
-                        x-model="phone"
-                        class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition"
-                        placeholder="Téléphone">
+                     <input type="tel" x-model="phone" placeholder="Téléphone" class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition">
                   </div>
                </div>
-
-               <!-- Présence -->
                <div class="mb-5">
                   <label class="block text-sm mb-2">Serez-vous présent.e ? <span class="text-mred">*</span></label>
                   <div class="space-y-2">
                      <label class="flex items-center gap-2 cursor-pointer text-sm">
-                        <input type="checkbox" value="vendredi" x-model="presence"
-                           class="w-4 h-4 rounded border-neutral-300 accent-mgreen">
-                        28 août (cérémonie & dîner)
+                        <input type="checkbox" value="vendredi" x-model="presence" class="w-4 h-4 rounded border-neutral-300 accent-mgreen">
+                        28 août (cérémonie &amp; dîner)
                      </label>
                      <label class="flex items-center gap-2 cursor-pointer text-sm">
-                        <input type="checkbox" value="samedi" x-model="presence"
-                           class="w-4 h-4 rounded border-neutral-300 accent-mgreen">
+                        <input type="checkbox" value="samedi" x-model="presence" class="w-4 h-4 rounded border-neutral-300 accent-mgreen">
                         29 août (brunch)
                      </label>
                      <label class="flex items-center gap-2 cursor-pointer text-sm">
-                        <input type="checkbox" value="absent" x-model="presence"
-                           class="w-4 h-4 rounded border-neutral-300 accent-mgreen">
+                        <input type="checkbox" value="absent" x-model="presence" class="w-4 h-4 rounded border-neutral-300 accent-mgreen">
                         Je ne serai pas présent.e
                      </label>
                   </div>
                </div>
-
-               <!-- +1 -->
                <div class="mb-5">
                   <label class="block text-sm mb-1">Nom de votre +1 (si présent.e)</label>
-                  <input
-                     type="text"
-                     x-model="plusOne"
-                     class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition"
-                     placeholder="">
+                  <input type="text" x-model="plusOne" class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition">
                </div>
-
-               <!-- Allergies -->
                <div class="mb-8">
                   <label class="block text-sm mb-1">Des allergies, intolérances ?</label>
-                  <textarea
-                     x-model="allergies"
-                     rows="3"
-                     class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition resize-none"
-                     placeholder=""></textarea>
+                  <textarea x-model="allergies" rows="3" class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition resize-none"></textarea>
                </div>
-
-               <!-- Submit -->
-               <button
-                  @click="submit()"
-                  class="w-full bg-mred text-white font-semibold py-3 rounded shadow hover:bg-[#c0583a] transition text-sm tracking-wide">
-                  Envoyer
+               <button @click="submit()" :disabled="sending||!isValid"
+                  :class="(sending||!isValid)?'opacity-60 cursor-not-allowed':'hover:bg-[#c0583a]'"
+                  class="w-full bg-mred text-white font-semibold py-3 rounded shadow transition text-sm tracking-wide flex items-center justify-center gap-2">
+                  <svg x-show="sending" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                  </svg>
+                  <span x-text="sending?'Envoi en cours…':'Envoyer'"></span>
                </button>
-
-               <!-- Required note -->
-               <p x-show="!submitted && prenom === '' && nom === '' && email === ''" class="text-xs text-gray-400 mt-3 text-center">
-                  Les champs marqués <span class="text-mred">*</span> sont obligatoires
-               </p>
+               <p class="text-xs text-gray-400 mt-3 text-center">Les champs marqués <span class="text-mred">*</span> sont obligatoires</p>
             </div>
          </section>
+
       </main>
 
-      <!-- FOOTER -->
+      <!-- ══════════ FOOTER ══════════ -->
       <footer id="contact" class="bg-mgreen text-green-100">
          <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10 text-sm">
             <div>
-               <p class="mb-6">©2024 Vincent & Natacha</p>
-               <button class="border border-mred text-mred font-bold px-6 py-2 hover:bg-mred hover:text-mgreen transition">
-               Contactez-nous
-               </button>
+               <p class="mb-6">©2026 Natacha &amp; Vincent</p>
+               <button class="border border-mred text-mred font-bold px-6 py-2 hover:bg-mred hover:text-mgreen transition">Contactez-nous</button>
             </div>
             <div class="space-y-2">
-               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Le Domaine</p>
-               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Informations pratiques</p>
-               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Témoignages</p>
-               <p class="opacity-80 hover:opacity-100 cursor-pointer">› Contact</p>
+               <a href="#domaine"      class="block opacity-80 hover:opacity-100">› Le Domaine</a>
+               <a href="#programme"    class="block opacity-80 hover:opacity-100">› Programme</a>
+               <a href="#venir"        class="block opacity-80 hover:opacity-100">› Comment venir</a>
+               <a href="#infos"        class="block opacity-80 hover:opacity-100">› Infos pratiques</a>
+               <a href="#listemariage" class="block opacity-80 hover:opacity-100">› Liste de mariage</a>
             </div>
             <div class="space-y-2">
-               <p>Mariage Vincent & Natacha</p>
-               <p>2 La chasse aux Fresnes</p>
-               <p>50480 Ravenoville</p>
-               <p class="underline cursor-pointer">Afficher le téléphone</p>
+               <p>Mariage Natacha &amp; Vincent</p>
+               <p>Château de Valmousse</p>
+               <p>Lambesc, Bouches-du-Rhône</p>
             </div>
             <div class="space-y-2">
-               <p class="font-semibold">Le samedi</p>
-               <p>17h - 23h45</p>
-               <p class="mt-4 font-semibold">Le dimanche</p>
-               <p>00h - 19h30</p>
+               <p class="font-semibold">Vendredi 28 août</p>
+               <p>Cérémonie à 16h00</p>
+               <p class="mt-4 font-semibold">Samedi 29 août</p>
+               <p>Brunch à partir de 12h30</p>
             </div>
          </div>
       </footer>
+
+      <script>
+         function countdown() {
+           return {
+             targetDate: new Date("2026-08-28T16:00:00"),
+             days:0, hours:0, minutes:0, seconds:0,
+             start() {
+               setInterval(()=>{
+                 const diff = this.targetDate - new Date();
+                 if(diff<=0) return;
+                 this.days    = Math.floor(diff/(1000*60*60*24));
+                 this.hours   = Math.floor((diff/(1000*60*60))%24);
+                 this.minutes = Math.floor((diff/(1000*60))%60);
+                 this.seconds = Math.floor((diff/1000)%60);
+               },1000);
+             }
+           }
+         }
+      </script>
+
    </body>
-   <script>
-      function countdown() {
-        return {
-          targetDate: new Date("2026-08-29T00:00:00"),
-          days: 0, hours: 0, minutes: 0, seconds: 0,
-          start() {
-            setInterval(() => {
-              const now = new Date();
-              const diff = this.targetDate - now;
-              if (diff <= 0) return;
-              this.days = Math.floor(diff / (1000 * 60 * 60 * 24));
-              this.hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-              this.minutes = Math.floor((diff / (1000 * 60)) % 60);
-              this.seconds = Math.floor((diff / 1000) % 60);
-            }, 1000);
-          }
-        }
-      }
-   </script>
 </html>
