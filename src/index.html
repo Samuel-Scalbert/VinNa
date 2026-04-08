@@ -27,19 +27,18 @@
          const EMAILJS_PUBLIC_KEY  = "Gy99PA8O61Fy7AZYj";
          const EMAILJS_SERVICE_ID  = "service_hls52j3";
          const EMAILJS_TEMPLATE_ID = "template_2swmced";
-         const RECIPIENT_1 = "vincen.scalbert@hotmail.fr";
-         const RECIPIENT_2 = "natacha.serryn@kedgebs.com";
+         const RECIPIENT = "martin.scalbert@gmail.com";
          (function(){ emailjs.init('Gy99PA8O61Fy7AZYj') })();
          async function sendRsvpEmails(formData) {
            const p = {
+             to_email: RECIPIENT,
              prenom: formData.prenom, nom: formData.nom, email: formData.email,
              phone: formData.phoneCode + " " + formData.phone,
              presence: formData.presence.join(", ") || "—",
              plus_one: formData.plusOne || "—",
              allergies: formData.allergies || "—",
            };
-           await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, { ...p, to_email: RECIPIENT_1 });
-            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, { ...p, to_email: RECIPIENT_2 });
+           await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, p);
          }
       </script>
       <style>
@@ -206,12 +205,15 @@
                      <img src="dist/coup3.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
                      <img src="dist/coup4.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
                      <img src="dist/coup5.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <img src="dist/coup6.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <img src="dist/coup7.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
                      <!-- duplicate immediately -->
                      <img src="dist/coup2.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
                      <img src="dist/coup3.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
                      <img src="dist/coup4.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
                      <img src="dist/coup5.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
-                  
+                     <img src="dist/coup6.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
+                     <img src="dist/coup7.jpeg" class="h-[300px] aspect-[3/4] object-cover rounded-2xl shadow-lg">
                   </div>
 
                </div>
@@ -225,7 +227,7 @@
 
          <!-- ─────────── LE DOMAINE ─────────── -->
          <div id="domaine" class="s-hero">
-            <img src="dist/Chateau2.jpg" alt="Château de Valmousse">
+            <img src="dist/Chateau.jpg" alt="Château de Valmousse">
             <div class="s-hero-overlay"><h2>Le Domaine</h2></div>
          </div>
          <section class="max-w-4xl mx-auto px-6 py-14 space-y-8 text-sm">
@@ -252,7 +254,7 @@
 
          <!-- ─────────── PROGRAMME ─────────── -->
          <div id="programme" class="s-hero">
-            <img src="dist/chat1.jpeg" alt="Programme" style="object-position:center 55%">
+            <img src="dist/Chateau3.jpeg" alt="Programme" style="object-position:center 55%">
             <div class="s-hero-overlay"><h2>Programme</h2></div>
          </div>
          <section class="max-w-4xl mx-auto px-6 py-14">
@@ -293,7 +295,7 @@
 
          <!-- ─────────── VENIR ─────────── -->
          <div id="venir" class="s-hero">
-            <img src="dist/Chateau2.jpg" alt="Comment venir" style="object-position:center 75%">
+            <img src="dist/Chateau4.jpeg" alt="Comment venir" style="object-position:center 75%">
             <div class="s-hero-overlay"><h2>Comment venir</h2></div>
          </div>
          <section class="max-w-4xl mx-auto px-6 py-14 space-y-8">
@@ -325,7 +327,7 @@
 
          <!-- ─────────── INFOS PRATIQUES ─────────── -->
          <div id="infos" class="s-hero">
-            <img src="dist/chat1.jpeg" alt="Infos pratiques" style="object-position:center 35%">
+            <img src="dist/Chateau5.jpeg" alt="Infos pratiques" style="object-position:center 35%">
             <div class="s-hero-overlay"><h2>Infos pratiques</h2></div>
          </div>
          <section class="max-w-4xl mx-auto px-6 py-14 space-y-10 text-sm text-gray-700">
@@ -339,7 +341,7 @@
 
             <div>
                <h3 class="text-lg font-bold text-mgreen mb-2"><span class="dot"></span>Navettes de nuit</h3>
-               <p>Afin de faciliter vos retours en toute sérénité, un van sera mis à disposition entre 1h00 et 5h00 pour assurer des trajets entre le Château de Valmousse et les hébergements situés dans un rayon de 15 km autour de Lambesc.</p>
+               <p>Pour la soirée du mariage, afin de faciliter vos retours en toute sérénité, un van sera mis à disposition entre 1h00 et 5h00 pour assurer des trajets entre le Château de Valmousse et les hébergements situés dans un rayon de 15 km autour de Lambesc.</p>
                <p class="mt-2 font-semibold text-gray-800">Dernier départ du château à 4h45.</p>
             </div>
 
