@@ -409,7 +409,7 @@
             <div x-show="errorMsg" x-transition class="bg-red-100 border border-red-300 text-red-700 rounded-lg px-5 py-4 mb-6 text-sm" x-text="errorMsg"></div>
 
             <div x-show="!submitted">
-               <div class="grid grid-cols-2 gap-4 mb-5">
+               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
                   <div>
                      <label class="block text-sm mb-1">Prénom <span class="text-mred">*</span></label>
                      <input type="text" x-model="prenom" class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition">
@@ -423,7 +423,7 @@
                   <label class="block text-sm mb-1">E-mail <span class="text-mred">*</span></label>
                   <input type="email" x-model="email" class="w-full border border-neutral-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mgreen transition">
                </div>
-               <div class="grid grid-cols-2 gap-4 mb-5">
+               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
                   <div>
                      <label class="block text-sm mb-1">Code</label>
                      <div class="relative">
