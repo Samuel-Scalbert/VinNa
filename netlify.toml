@@ -1,0 +1,7 @@
+[build]
+  publish = "src"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Content-Type = "image/svg+xml"
