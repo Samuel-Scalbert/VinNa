@@ -166,7 +166,7 @@
            font-family: 'Cormorant Garamond', serif;
            font-weight: 300;
            font-style: italic;
-           font-size: clamp(3.2rem, 10vw, 7.5rem);
+           font-size: clamp(2.6rem, 10vw, 7.5rem);
            line-height: 0.92;
            color: #fff;
            text-shadow: 0 4px 48px rgba(0,0,0,0.25);
@@ -415,6 +415,19 @@
            background-image: radial-gradient(ellipse at 100% 0%, rgba(68,108,61,0.04), transparent 60%);
          }
 
+         /* ── Mobile tweaks ── */
+         @media (max-width: 400px) {
+           .hero-main-overlay .cbox { padding: 0.5rem 0.65rem; min-width: 52px; }
+           .hero-main-overlay .cbox .n { font-size: 1.3rem; }
+           .hero-main-overlay .cbox .l { font-size: 0.48rem; }
+         }
+         .banner-btn {
+           display: inline-block;
+           max-width: 90%;
+           word-break: break-word;
+           text-align: center;
+         }
+
          /* ── Scroll reveal ── */
          .fade-up {
            opacity: 0;
@@ -429,7 +442,7 @@
    </head>
 
    <body style="background:var(--forest-deep); margin:0; padding:0;">
-   <div class="min-h-screen flex flex-col" style="max-width:1440px; margin:0 auto; background:var(--cream); overflow:hidden;">
+   <div class="min-h-screen flex flex-col" style="max-width:1440px; margin:0 auto; background:var(--cream); overflow:clip;">
 
       <!-- ══════════ HEADER ══════════ -->
       <header>
@@ -488,7 +501,7 @@
                   </svg>
                </button>
             </div>
-            <ul :class="open?'block':'hidden'" class="md:flex md:justify-center text-center">
+            <ul :class="open?'block':'hidden'" class="md:flex md:justify-center text-center" style="background:rgba(250,247,240,0.98);">
                <li class="border-l border-stone-200 first:border-l-0"><a href="#accueil"     class="block px-3 py-3.5">Accueil</a></li>
                <li class="border-l border-stone-200"><a href="#nous2"        class="block px-3 py-3.5">Nous 2</a></li>
                <li class="border-l border-stone-200"><a href="#domaine"      class="block px-3 py-3.5">Le Domaine</a></li>
@@ -508,7 +521,7 @@
                <p class="hero-date">Vendredi 28 Août 2026</p>
                <h2 class="hero-names">Natacha<br>&amp; Vincent</h2>
                <p class="hero-place">Château de Valmousse · Lambesc, Provence</p>
-               <div class="flex gap-2 mt-3" x-data="countdown()" x-init="start()">
+               <div class="flex flex-wrap justify-center gap-2 mt-3" x-data="countdown()" x-init="start()">
                   <div class="cbox"><span class="n" x-text="days"></span><span class="l">jours</span></div>
                   <div class="cbox"><span class="n" x-text="hours"></span><span class="l">heures</span></div>
                   <div class="cbox"><span class="n" x-text="minutes"></span><span class="l">min</span></div>
@@ -916,7 +929,8 @@
       <div style="background:var(--parchment); border-top:1px solid rgba(68,108,61,0.12); border-bottom:1px solid rgba(68,108,61,0.12); padding:2.25rem 1.5rem; text-align:center;">
          <p style="font-family:'Playfair Display',serif; font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold-warm); margin-bottom:0.75rem;">À propos</p>
          <a href="https://brazil-selection.com/informations/culture-generale/arts-bresil/peinture-sculpture-bresil/art-primitif-bresil/#:~:text=En%20r%C3%A8gle%20g%C3%A9n%C3%A9rale%2C%20l'art,ou%20quartzites%20qui%20les%20prot%C3%A9geaient." target="_blank"
-            style="display:inline-block; background:var(--forest); color:var(--gold); font-family:'Playfair Display',serif; font-weight:700; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; padding:0.85rem 2.5rem; border-radius:2px; transition:background 0.2s;"
+            class="banner-btn"
+            style="background:var(--forest); color:var(--gold); font-family:'Playfair Display',serif; font-weight:700; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; padding:0.85rem 2.5rem; border-radius:2px; transition:background 0.2s;"
             onmouseover="this.style.background='var(--forest-deep)';" onmouseout="this.style.background='var(--forest)';">
             Pour en savoir plus sur l'art primitif brésilien
          </a>
