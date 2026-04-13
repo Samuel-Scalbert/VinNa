@@ -39,7 +39,7 @@
              prenom: formData.prenom, nom: formData.nom, email: formData.email,
              phone: formData.phoneCode + " " + formData.phone,
              presence: formData.presence.join(", ") || "—",
-             plus_one: formData.plusOne || "—",
+
              adresse: formData.adresse || "—",
              allergies: formData.allergies || "—",
            };
@@ -818,13 +818,13 @@
             x-data="{
                submitted:false, sending:false, errorMsg:'',
                prenom:'', nom:'', email:'', phoneCode:'FR +33', phone:'',
-               plusOne:'', adresse:'', allergies:'', presence:[],
+               adresse:'', allergies:'', presence:[],
                get isValid(){ return this.prenom.trim()&&this.nom.trim()&&this.email.trim()&&this.presence.length>0; },
                async submit(){
                   if(!this.isValid) return;
                   this.sending=true; this.errorMsg='';
                   try{
-                     await sendRsvpEmails({prenom:this.prenom,nom:this.nom,email:this.email,phoneCode:this.phoneCode,phone:this.phone,plusOne:this.plusOne,adresse:this.adresse,allergies:this.allergies,presence:this.presence});
+                     await sendRsvpEmails({prenom:this.prenom,nom:this.nom,email:this.email,phoneCode:this.phoneCode,phone:this.phone,adresse:this.adresse,allergies:this.allergies,presence:this.presence});
                      this.submitted=true;
                   }catch(e){ console.error(e); this.errorMsg='Une erreur est survenue. Veuillez réessayer.'; }
                   finally{ this.sending=false; }
@@ -894,10 +894,6 @@
                         Je ne serai pas présent.e
                      </label>
                   </div>
-               </div>
-               <div class="mb-7">
-                  <label class="rsvp-label">Nom de votre +1 (si présent.e)</label>
-                  <input type="text" x-model="plusOne" class="rsvp-input" placeholder="Marie Dupont">
                </div>
                <div class="mb-7">
                   <label class="rsvp-label">Adresse postale</label>
