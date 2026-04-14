@@ -1,7 +1,25 @@
 [build]
   publish = "src"
 
+# Cache images for 1 year — returning visitors skip re-downloading them
 [[headers]]
-  for = "/*.svg"
+  for = "/dist/*.jpeg"
   [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/dist/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/dist/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
     Content-Type = "image/svg+xml"
+
+# Cache HTML for a short time so updates still propagate
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
