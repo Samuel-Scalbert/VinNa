@@ -440,6 +440,248 @@
          .fade-up:nth-child(2) { transition-delay: 0.1s; }
          .fade-up:nth-child(3) { transition-delay: 0.2s; }
          .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+         /* ── Bar / jeu cocktail "beauf de luxe" (accessible uniquement via #bar) ── */
+         #bar {
+           --tacky-red: #e2140a;
+           --tacky-yellow: #ffcc00;
+           --flame-orange: #ff6a00;
+         }
+         .beauf-section {
+           position: relative;
+           overflow: hidden;
+           background:
+             radial-gradient(circle at 18% 15%, rgba(255,106,0,0.28), transparent 45%),
+             radial-gradient(circle at 85% 88%, rgba(255,204,0,0.20), transparent 42%),
+             linear-gradient(160deg, #1a1a1a 0%, #000 65%);
+           border-top: 6px solid var(--tacky-yellow);
+           border-bottom: 6px solid var(--tacky-yellow);
+         }
+         .beauf-ticker {
+           overflow: hidden;
+           background: repeating-linear-gradient(135deg, var(--tacky-yellow) 0 20px, #111 20px 40px);
+           border-bottom: 4px solid #000;
+           padding: 0.55rem 0;
+         }
+         .beauf-ticker-track {
+           display: flex;
+           width: max-content;
+           animation: scroll 24s linear infinite;
+         }
+         .beauf-ticker-track span {
+           font-family: Arial, Helvetica, sans-serif;
+           font-weight: 900;
+           font-size: 0.95rem;
+           letter-spacing: 0.03em;
+           color: #fff;
+           text-transform: uppercase;
+           white-space: nowrap;
+           padding-right: 2rem;
+           /* contraste garanti sur les rayures jaunes ET noires */
+           text-shadow:
+             -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+             -1.5px  1.5px 0 #000, 1.5px  1.5px 0 #000,
+             -1.5px  0    0 #000, 1.5px  0    0 #000,
+              0    -1.5px 0 #000, 0     1.5px 0 #000;
+         }
+         .sound-toggle {
+           position: absolute;
+           top: 0.85rem; right: 0.85rem;
+           background: #111;
+           color: var(--tacky-yellow);
+           border: 2px solid var(--tacky-yellow);
+           border-radius: 50%;
+           width: 46px; height: 46px;
+           font-size: 1.25rem;
+           line-height: 1;
+           cursor: pointer;
+           z-index: 6;
+           box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+         }
+         .beauf-tag {
+           display: inline-block;
+           font-family: Arial, Helvetica, sans-serif;
+           font-weight: 900;
+           font-size: 0.7rem;
+           letter-spacing: 0.2em;
+           text-transform: uppercase;
+           color: #111;
+           background: var(--tacky-yellow);
+           padding: 0.35rem 1rem;
+           border-radius: 50px;
+           transform: rotate(-2deg);
+         }
+         @keyframes flicker {
+           0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+             text-shadow: 0 0 8px var(--tacky-yellow), 0 0 18px var(--tacky-yellow), 0 0 32px var(--flame-orange), 0 0 48px var(--flame-orange);
+             opacity: 1;
+           }
+           20%, 22%, 24%, 55% { text-shadow: none; opacity: 0.82; }
+         }
+         .beauf-title {
+           font-family: Arial, Helvetica, sans-serif;
+           font-weight: 900;
+           font-size: clamp(2.2rem, 8.5vw, 4.4rem);
+           line-height: 1.03;
+           text-transform: uppercase;
+           letter-spacing: 0.01em;
+           background: linear-gradient(180deg, #fff7d6 0%, var(--tacky-yellow) 35%, var(--flame-orange) 68%, var(--tacky-red) 100%);
+           -webkit-background-clip: text;
+           background-clip: text;
+           -webkit-text-fill-color: transparent;
+           animation: flicker 4.2s infinite;
+         }
+         .beauf-sub {
+           font-family: 'Playfair Display', serif;
+           font-style: italic;
+           font-size: clamp(0.95rem, 2vw, 1.15rem);
+           color: rgba(255,255,255,0.82);
+           max-width: 34rem;
+           margin: 0 auto;
+         }
+         .beauf-sponsors {
+           font-family: Arial, Helvetica, sans-serif;
+           font-size: 0.72rem;
+           letter-spacing: 0.08em;
+           color: rgba(255,255,255,0.45);
+           text-transform: uppercase;
+         }
+         .beauf-flag-divider {
+           height: 14px;
+           max-width: 220px;
+           margin: 0 auto;
+           border-radius: 2px;
+           background-image: repeating-conic-gradient(#fff 0% 25%, #111 0% 50%);
+           background-size: 14px 14px;
+           box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+         }
+         .beauf-intro {
+           font-size: 0.95rem;
+           color: rgba(255,255,255,0.78);
+           max-width: 34rem;
+           margin: 0 auto;
+           line-height: 1.8;
+         }
+         .beauf-id-card {
+           background: #fff;
+           padding: 0.9rem 0.9rem 1.5rem;
+           border-radius: 4px;
+           box-shadow: 0 14px 32px rgba(0,0,0,0.5);
+           position: relative;
+         }
+         .beauf-id-card::before {
+           content: '';
+           position: absolute;
+           top: -12px; left: 50%;
+           transform: translateX(-50%) rotate(-3deg);
+           width: 76px; height: 24px;
+           background: rgba(255,255,255,0.55);
+           border: 1px solid rgba(0,0,0,0.06);
+           box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+         }
+         .beauf-id-photo {
+           width: 100%;
+           aspect-ratio: 1 / 1;
+           border-radius: 3px;
+           overflow: hidden;
+           background: #222;
+           border: 2px solid #111;
+         }
+         .beauf-id-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+         .beauf-id-name {
+           font-family: Arial, Helvetica, sans-serif;
+           font-weight: 900;
+           text-transform: uppercase;
+           letter-spacing: 0.03em;
+           font-size: 1.15rem;
+           color: #111;
+           margin-top: 0.85rem;
+           text-align: center;
+         }
+         .beauf-id-title {
+           font-family: 'Playfair Display', serif;
+           font-style: italic;
+           font-size: 0.82rem;
+           color: var(--tacky-red);
+           text-align: center;
+           margin-top: 0.15rem;
+         }
+         .beauf-card {
+           background: #fff;
+           border-radius: 16px;
+           padding: 2.25rem 1.75rem;
+           text-align: center;
+           border: 3px solid var(--tacky-yellow);
+           box-shadow: 0 14px 36px rgba(0,0,0,0.4);
+         }
+         .beauf-card-title {
+           font-family: Arial, Helvetica, sans-serif;
+           font-weight: 900;
+           font-size: 1.2rem;
+           text-transform: uppercase;
+           letter-spacing: 0.02em;
+           color: #111;
+           margin-bottom: 0.5rem;
+         }
+         .beauf-card-text { font-size: 0.92rem; color: #666; margin-bottom: 1.75rem; }
+         .beauf-btn {
+           display: inline-block;
+           background: linear-gradient(180deg, var(--tacky-yellow), var(--flame-orange));
+           color: #111;
+           font-family: Arial, Helvetica, sans-serif;
+           font-weight: 900;
+           font-size: 1rem;
+           letter-spacing: 0.03em;
+           text-transform: uppercase;
+           padding: 1.15rem 2.5rem;
+           border-radius: 50px;
+           border: 3px solid #111;
+           cursor: pointer;
+           box-shadow: 0 6px 0 #a63c00, 0 12px 24px rgba(0,0,0,0.35);
+           transition: transform 0.15s, box-shadow 0.15s;
+         }
+         .beauf-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 0 #a63c00, 0 16px 28px rgba(0,0,0,0.4); }
+         .beauf-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #a63c00, 0 4px 10px rgba(0,0,0,0.3); }
+         .wheel-wrap { position: relative; width: 300px; height: 300px; margin: 0 auto 1.75rem; max-width: 100%; }
+         .wheel {
+           width: 100%; height: 100%;
+           border-radius: 50%;
+           position: relative;
+           border: 8px solid var(--tacky-yellow);
+           box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 4px #111;
+         }
+         .wheel-label {
+           position: absolute;
+           top: 50%; left: 50%;
+           width: 50%; height: 2px;
+           transform-origin: 0% 50%;
+           margin-top: -1px;
+           display: flex;
+           align-items: center;
+           justify-content: flex-end;
+           padding-right: 10px;
+         }
+         .wheel-label span {
+           font-family: Arial, Helvetica, sans-serif;
+           font-weight: 900;
+           font-size: 0.66rem;
+           text-transform: uppercase;
+           letter-spacing: 0.02em;
+           color: #fff;
+           text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+           white-space: nowrap;
+         }
+         .wheel-pointer {
+           position: absolute;
+           top: -16px; left: 50%;
+           transform: translateX(-50%) scale(1.3);
+           width: 0; height: 0;
+           border-left: 11px solid transparent;
+           border-right: 11px solid transparent;
+           border-bottom: 18px solid var(--tacky-red);
+           z-index: 10;
+           filter: drop-shadow(0 2px 2px rgba(0,0,0,0.4));
+         }
       </style>
    </head>
 
@@ -922,6 +1164,101 @@
             </div>
          </section>
 
+         <!-- ─────────── BAR SECRET (accessible uniquement via le QR code, lien #bar) ─────────── -->
+         <section id="bar" style="display:none;" class="beauf-section">
+
+            <div class="beauf-ticker">
+               <div class="beauf-ticker-track">
+                  <span>🔥 ALCOOL FORT — PAS CHER — AMBIANCE CH'TI GARANTIE — JOHNNY AURAIT VALIDÉ — CLASSE — TUNING FRIENDLY — SOLO Q FRIENDLY🔥</span>
+                  <span>🔥 ALCOOL FORT — PAS CHER — AMBIANCE CH'TI GARANTIE — JOHNNY AURAIT VALIDÉ — CLASSE — TUNING FRIENDLY — SOLO Q FRIENDLY🔥</span>
+               </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-6 py-14 md:py-20 space-y-12 text-center relative">
+
+               <button class="sound-toggle" onclick="toggleSound(this)" aria-label="Activer/couper le son" id="soundToggleBtn">🔊</button>
+
+               <div class="space-y-4">
+                  <span class="beauf-tag">✨ Édition limitée (1 ou 2 max)✨</span>
+                  <h2 class="beauf-title">Le Open Bar Prestige<br>Club</h2>
+                  <p class="beauf-sub">Bienvenue dans la zone la moins classe du mariage le plus classe de l'année.</p>
+                  <p class="beauf-sponsors">Sponsorisé (pas vraiment) par Ricard, Get 27° et la Ch'ti 8.6°</p>
+               </div>
+
+               <!-- Roue -->
+               <div class="beauf-card max-w-sm mx-auto">
+                  <h4 class="beauf-card-title">🎡 La roue de la fortune (du pauvre)</h4>
+                  <div x-data="wheelGame()">
+                     <div class="wheel-wrap">
+                        <div class="wheel-pointer"></div>
+                        <div class="wheel" :style="'background:' + wheelBackground() + '; transform:rotate(' + rotation + 'deg); transition:' + (spinning ? 'transform 2.15s cubic-bezier(.19,1,.22,1)' : 'none')">
+                           <template x-for="(drink, i) in drinks" :key="i">
+                              <div class="wheel-label" :style="segStyle(i)">
+                                 <span x-text="drink"></span>
+                              </div>
+                           </template>
+                        </div>
+                     </div>
+                     <button class="beauf-btn" @click="spin()" :disabled="spinning" :class="spinning ? 'opacity-50 cursor-not-allowed' : ''">
+                        <span x-text="spinning ? 'Ça tourne…' : 'Lancer la roue'"></span>
+                     </button>
+
+                     <!-- Popup résultat -->
+                     <div x-show="showModal" x-transition.opacity
+                        style="position:fixed; inset:0; z-index:50; background:rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; padding:1.5rem;"
+                        @click.self="showModal = false">
+                        <div style="background:#fff; border-radius:20px; border:4px solid var(--tacky-yellow); max-width:22rem; width:100%; padding:2rem 1.75rem; text-align:center; box-shadow:0 24px 60px rgba(0,0,0,0.5);">
+                           <p style="font-family:Arial, Helvetica, sans-serif; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; color:var(--tacky-red); font-size:0.85rem;">🎉 Le sort en a décidé 🎉</p>
+                           <!-- Photo de la boisson : src="dist/drinks/<slug-du-nom>.jpg" — dépose un fichier avec
+                                le bon nom (voir slug() dans wheelGame()) pour qu'il remplace le placeholder ici -->
+                           <div x-data="{ photoOk: false }">
+                              <div style="margin:1.25rem auto; width:140px; height:140px; border:3px dashed #ccc; border-radius:14px; position:relative; overflow:hidden; background:#f7f7f7;">
+                                 <img :src="'dist/drinks/' + slug(result) + '.jpg'" alt=""
+                                    style="width:100%; height:100%; object-fit:cover; display:block;"
+                                    x-show="photoOk"
+                                    @load="photoOk = true" @error="photoOk = false">
+                                 <div x-show="!photoOk" style="display:flex; position:absolute; inset:0; align-items:center; justify-content:center; font-size:2.5rem;">🍹</div>
+                              </div>
+                              <p x-show="!photoOk" style="font-size:0.65rem; color:#999; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem;">Photo à venir</p>
+                           </div>
+                           <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:700; font-size:1.9rem; color:#111;" x-text="result"></p>
+                           <button class="beauf-btn" style="margin-top:1.5rem; padding:0.85rem 2rem; font-size:0.85rem;" @click="showModal = false">Allez, j'y vais !</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="beauf-flag-divider"></div>
+
+               <p class="beauf-intro">
+                  Vous cherchiez Samuel Féequelécherdespied ou bien Raphael FéeKecasserlescouillesà Didier ?
+                  Bravo général, un des deux VIP officiels du bar vient d'être repéré en pleine nature.
+                  Lancez la roue pour laisser le hasard décider de votre sort.
+               </p>
+
+               <!-- Cartes VIP -->
+               <div class="grid sm:grid-cols-2 gap-8 max-w-xl mx-auto">
+                  <div class="beauf-id-card" style="transform:rotate(-4deg);">
+                     <div class="beauf-id-photo">
+                        <img src="dist/samuel.jpg" alt="Samuel"
+                           onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmY2MwMCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2UyMTQwYSIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxMTExMTEiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4NiIgZmlsbD0idXJsKCNnKSIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjUiLz4KPHRleHQgeD0iMTAwIiB5PSIxMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjkyIiBmaWxsPSIjMTExMTExIj5TPC90ZXh0Pgo8L3N2Zz4='">
+                     </div>
+                     <p class="beauf-id-name">Samuel</p>
+                     <p class="beauf-id-title">Premier Nez Sensei</p>
+                  </div>
+                  <div class="beauf-id-card" style="transform:rotate(3deg);">
+                     <div class="beauf-id-photo">
+                        <img src="dist/raphael.jpg" alt="Raphael"
+                           onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZmY2MwMCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2UyMTQwYSIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxMTExMTEiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4NiIgZmlsbD0idXJsKCNnKSIgc3Ryb2tlPSIjMTExMTExIiBzdHJva2Utd2lkdGg9IjUiLz4KPHRleHQgeD0iMTAwIiB5PSIxMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjkyIiBmaWxsPSIjMTExMTExIj5SPC90ZXh0Pgo8L3N2Zz4='">
+                     </div>
+                     <p class="beauf-id-name">Raphael</p>
+                     <p class="beauf-id-title">Vody Monstre</p>
+                  </div>
+               </div>
+
+            </div>
+         </section>
+
       </main>
 
       <!-- ══════════ BANDEAU ART PRIMITIF ══════════ -->
@@ -998,6 +1335,160 @@
              }
            }
          }
+
+         const COCKTAILS = [
+           "Bière du corbeau", "8.6 IPA", "8.6 cherry", "8.6 gold", "Rince cochon tropical",
+           "8.6 extreme", "Vodka crazy", "Eristoff blueberries", "Vody classique", "5mn de pure plaisir avec la JNR"
+         ];
+
+         // ── Sons "beauf" ──
+         // 🔊 PLACEHOLDER — remplace ces fichiers par tes propres enregistrements
+         // (garde exactement les mêmes noms dans src/dist/sons/, aucune autre modif nécessaire)
+         const SOUND_FILES = {
+           rev: 'dist/sons/demarrage.wav',
+           // plusieurs sons de victoire possibles — un est tiré au hasard à chaque fois.
+           // ajoute/retire des fichiers dans cette liste (même dossier src/dist/sons/) pour changer le tirage
+           tada: [
+             'dist/sons/victoire1.m4a', 'dist/sons/victoire2.m4a', 'dist/sons/victoire3.m4a',
+             'dist/sons/victoire4.m4a', 'dist/sons/victoire5.m4a'
+           ]
+         };
+         let SOUND_ON = true;
+         let audioCtx = null;
+         function getAudioCtx() {
+           if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+           if (audioCtx.state === 'suspended') audioCtx.resume();
+           return audioCtx;
+         }
+         function toggleSound(btn) {
+           SOUND_ON = !SOUND_ON;
+           btn.textContent = SOUND_ON ? '🔊' : '🔇';
+         }
+         // Joue le fichier enregistré ; bascule sur le son synthétisé si le fichier est absent/illisible
+         function playFile(url, fallbackFn) {
+           if (!SOUND_ON) return;
+           const audio = new Audio(url);
+           audio.volume = 0.9;
+           audio.addEventListener('error', () => fallbackFn(), { once: true });
+           const p = audio.play();
+           if (p && p.catch) p.catch(() => fallbackFn());
+         }
+         function playRev() { playFile(SOUND_FILES.rev, playRevSynth); }
+         function playTada() {
+           const choices = SOUND_FILES.tada;
+           const url = choices[Math.floor(Math.random() * choices.length)];
+           playFile(url, playTadaSynth);
+         }
+
+         function playRevSynth() {
+           if (!SOUND_ON) return;
+           const ctx = getAudioCtx();
+           const now = ctx.currentTime;
+           const osc = ctx.createOscillator();
+           const gain = ctx.createGain();
+           osc.type = 'sawtooth';
+           osc.frequency.setValueAtTime(80, now);
+           osc.frequency.exponentialRampToValueAtTime(320, now + 0.55);
+           osc.frequency.exponentialRampToValueAtTime(90, now + 0.8);
+           gain.gain.setValueAtTime(0.12, now);
+           gain.gain.linearRampToValueAtTime(0, now + 0.8);
+           osc.connect(gain).connect(ctx.destination);
+           osc.start(now);
+           osc.stop(now + 0.8);
+         }
+         // Plusieurs variantes synthétisées, tirées au hasard (fallback si les fichiers sont absents)
+         const TADA_SYNTH_PRESETS = [
+           { notes: [523.25, 659.25, 783.99, 1046.5], type: 'triangle', step: 0.08 },  // ta-da ! classique
+           { notes: [659.25, 987.77], type: 'sine', step: 0.12 },                       // ding-dong cash register
+           { notes: [146.83, 220.0, 293.66], type: 'sawtooth', step: 0 }                // power chord rock
+         ];
+         function playTadaSynth() {
+           if (!SOUND_ON) return;
+           const ctx = getAudioCtx();
+           const now = ctx.currentTime;
+           const preset = TADA_SYNTH_PRESETS[Math.floor(Math.random() * TADA_SYNTH_PRESETS.length)];
+           preset.notes.forEach((freq, i) => {
+             const osc = ctx.createOscillator();
+             const gain = ctx.createGain();
+             osc.type = preset.type;
+             osc.frequency.value = freq;
+             const start = now + i * preset.step;
+             gain.gain.setValueAtTime(0, start);
+             gain.gain.linearRampToValueAtTime(0.2, start + 0.03);
+             gain.gain.linearRampToValueAtTime(0, start + 0.4);
+             osc.connect(gain).connect(ctx.destination);
+             osc.start(start);
+             osc.stop(start + 0.4);
+           });
+         }
+
+         function wheelGame() {
+           const colors = ['#446c3d', '#d56844', '#d4a843', '#2d4a27', '#b84e32', '#7a6b5a'];
+           return {
+             drinks: COCKTAILS,
+             spinning: false,
+             rotation: 0,
+             result: null,
+             showModal: false,
+             // "Bière du corbeau" → "biere-du-corbeau" (nom de fichier attendu dans dist/drinks/)
+             slug(name) {
+               return (name || '')
+                 .toLowerCase()
+                 .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                 .replace(/[^a-z0-9]+/g, '-')
+                 .replace(/^-+|-+$/g, '');
+             },
+             segStyle(i) {
+               const segAngle = 360 / this.drinks.length;
+               const angle = i * segAngle + segAngle / 2;
+               return `transform:rotate(${angle - 90}deg)`;
+             },
+             wheelBackground() {
+               const n = this.drinks.length;
+               const stops = [];
+               for (let i = 0; i < n; i++) {
+                 const c = colors[i % colors.length];
+                 const start = (i / n * 100).toFixed(3);
+                 const end = ((i + 1) / n * 100).toFixed(3);
+                 stops.push(`${c} ${start}% ${end}%`);
+               }
+               return `conic-gradient(${stops.join(',')})`;
+             },
+             spin() {
+               if (this.spinning) return;
+               this.result = null;
+               this.showModal = false;
+               this.spinning = true;
+               playRev();
+               const n = this.drinks.length;
+               const winner = Math.floor(Math.random() * n);
+               const segAngle = 360 / n;
+               const withinTurn = 360 - (winner * segAngle + segAngle / 2);
+               const spins = 6;
+               this.rotation = this.rotation - (this.rotation % 360) + spins * 360 + withinTurn;
+               setTimeout(() => {
+                 this.spinning = false;
+                 this.result = this.drinks[winner];
+                 this.showModal = true;
+                 playTada();
+               }, 2150);
+             }
+           };
+         }
+
+         // La section #bar ne s'affiche que si on y arrive via ce lien précis (QR code)
+         (function () {
+           function checkBarHash() {
+             const barSection = document.getElementById('bar');
+             if (!barSection) return;
+             if (location.hash === '#bar') {
+               barSection.style.display = 'block';
+               barSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+             }
+           }
+           document.addEventListener('DOMContentLoaded', checkBarHash);
+           window.addEventListener('hashchange', checkBarHash);
+         })();
 
          // Scroll reveal
          const obs = new IntersectionObserver((entries) => {
